@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsywne Kafelki</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="jquery.easing.1.3.js"></script>
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            background-color: #ffffff;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        #box {
+            max-width: 90%; /* Szerokość maksymalna */
+            width: 1200px; /* Szerokość dla większych ekranów */
+            margin: 40px auto; /* Odstęp od góry i dołu (40px) */
+            background-color: #ffffff; /* Tło białe */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 20px; /* Dodatkowy padding wewnątrz boxu */
+        }
+
+        h2 {
+            margin: 0;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            color: #243751;
+            border: 2px solid #243751;
+            cursor: default;
+            font-weight: bold;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h2 img {
+            margin-left: 10px;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        #panels div {
+            display: none;
+            background-color: #ffffff;
+            padding: 10px 15px;
+            border: 2px solid #243751;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            color: #243751;
+        }
+
+        #panels p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Responsywność */
+        @media (max-width: 1200px) {
+            #box {
+                max-width: 95%; /* Zmniejszenie szerokości dla dużych tabletów */
+            }
+
+            h2 img {
+                width: 36px;
+                height: 36px; /* Zmniejszenie rozmiaru ikon na tabletach */
+            }
+        }
+
+        @media (max-width: 768px) {
+            #box {
+                max-width: 100%; /* Zajmuje całą szerokość ekranu na telefonach */
+            }
+
+            h2 {
+                font-size: 1rem; /* Zmniejszenie rozmiaru tekstu na telefonach */
+                padding: 10px 15px; /* Mniejsze marginesy na telefonach */
+            }
+
+            h2 img {
+                width: 32px;
+                height: 32px; /* Zmniejszenie ikon na telefonach */
+            }
+
+            #panels div {
+                font-size: 0.9rem; /* Mniejszy tekst w panelach na telefonach */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="panels">
+            <h2>
+                Lorem ipsum
+                <img src="img/plus.png" alt="plus">
+            </h2>
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet leo. Aliquam luctus et justo.
+                    Praesent nec tellus in est enim molestie quis, eleifend
+                    at, quam.
+                </p>
+            </div>
+
+            <h2>
+                Phasellus libero
+                <img src="img/plus.png" alt="plus">
+            </h2>
+            <div>
+                <p>
+                    Phasellus libero quis massa sapien, tempus enim sed elit
+                    porta lorem, sit amet purus dolor auctor mattis.
+                    Pellentesque fermentum pellentesque a, massa.
+                </p>
+            </div>
+
+            <h2>
+                Vivamus nibh
+                <img src="img/plus.png" alt="plus">
+            </h2>
+            <div>
+                <p>
+                    Vivamus nibh ut quam. Nam sed augue justo iaculis nec,
+                    eros. Sed diam justo, hendrerit libero. In ornare bibendum
+                    leo eu eros.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // Ukryj wszystkie panele na starcie
+            $("#panels > div").hide();
+
+            // Obsługa kliknięcia na ikonach
+            $("#panels h2 img").on('click', function () {
+                const icon = $(this);
+                const panel = icon.closest('h2').next();
+
+                // Zwiń wszystkie inne panele
+                $("#panels > div").not(panel).slideUp('slow');
+                $("#panels h2 img").not(icon).attr('src', 'img/plus.png');
+
+                // Sprawdź stan panelu
+                if (panel.is(':visible')) {
+                    panel.slideUp('slow');
+                    icon.attr('src', 'img/plus.png'); // Zmień ikonę na plus
+                } else {
+                    panel.slideDown('slow', 'easeOutCubic');
+                    icon.attr('src', 'img/minus.png'); // Zmień ikonę na minus
+                }
+            });
+        });
+    </script>
+</body>
+</html>

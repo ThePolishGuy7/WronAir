@@ -8,6 +8,7 @@
   /* Podstawowy styl body */
   body {
     font-family: Calibri, sans-serif;
+    font-weight: bold;
     background-color: #fff;
     color: #333;
     overflow-x: hidden;
@@ -425,12 +426,6 @@
     margin-bottom: 40px;
 }
 
-/* Departure section styling */
-.departure-container {
-    background-color: #f5f5f5;
-    padding: 20px;
-}
-
 .departure-container h2 {
     font-size: 1.5rem;
     color: #333;
@@ -441,7 +436,9 @@
 .flight-options {
     display: flex;
     justify-content: space-between; /* Create space between left and right sections */
-    gap: 20px;
+    height: 320px;
+    margin: 20px 0;
+    background-color: #f5f5f5;
 }
 
 .flight-info, .flight-prices {
@@ -460,6 +457,9 @@
     color: #555;
     text-align: center;
     line-height: 1; /* Zmniejsz wysokość linii do minimum */
+}
+.flight-info .hour{
+  padding-top: 40px;
 }
 
 .flight-info h2 {
@@ -491,37 +491,44 @@
   flex: 1; /* Make all boxes equally wide */
   background-color: #f5f5f5;
   border-right: 2px solid #243751; /* Add border between boxes */
-  text-align: center;
-  height: 320px;
+  height: 100%;
   display: flex; /* Use flexbox for aligning content inside the box */
   flex-direction: column; /* Arrange content vertically */
   justify-content: space-between; /* Push content to top and bottom */
   align-items: center; /* Center content horizontally */
 }
-
-.price-box:last-child {
-  border-right: none; /* Remove the right border from the last box */
-}
-
 .price-box p {
-  margin: 10px 0;
   font-size: 1rem;
   color: #333;
 }
+.price-box h1{
+  font-size: 28px;
+  padding-bottom: 40px;
+}
+
+.price-box h2{
+  font-size: 20px;
+  padding-bottom: 20px;
+}
 
 .price-box .price {
-  font-size: 1.4rem;
+  font-size: 35px;
   font-weight: bold;
   color: #243751;
+}
+
+.price-box .exception{
+  padding-top: 20px;
 }
 
 .price-box button {
   width: 100%; /* Make the button as wide as the box */
   padding: 20px;
   font-size: 1rem;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #243751;
+  color: #ffffff;
   border: none;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
   align-self: stretch; /* Ensure the button stretches horizontally */
@@ -531,6 +538,45 @@
 .price-box button:hover {
   background-color: #0056b3;
 }
+
+.price-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4A5568; /* Tło podobne do szarego */
+  color: white;
+  padding: 10px 15px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.price-container h2 {
+  font-weight: bold;
+  padding-top: 20px;
+  padding-left: 30px;
+  color: #ffffff;
+}
+
+.price-value {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.return-button {
+  background-color: #C53030; /* Czerwony kolor przycisku */
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 30px;
+  font-weight: bold;
+  border: 2px solid #243751; /* Dodajemy cienką obwódkę */
+}
+
+.return-button:hover {
+  background-color: #a00; /* Ciemniejszy czerwony przy hover */
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

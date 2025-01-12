@@ -404,6 +404,11 @@
     margin: 0 auto;
 }
 
+.spaces{
+    display: inline-block;
+    width: 40px; /* Adjust the width as needed */
+}
+
 .icon {
     width: 1em; /* Adjust the size to match the text size */
     height: auto; /* Maintain the aspect ratio */
@@ -415,7 +420,9 @@
     font-size: 2rem;
     text-align: left;
     color: #243751;
-    margin-bottom: 20px;
+}
+.content h2{
+    margin-bottom: 40px;
 }
 
 /* Departure section styling */
@@ -445,6 +452,7 @@
 
 .flight-info {
     text-align: left; /* Align content to the left */
+    position: relative;
 }
 
 .flight-info p {
@@ -461,9 +469,14 @@
 }
 
 .flight-info h3 {
-    font-size: 30px;
-    text-align: left;
+    font-size: 16px; /* Rozmiar czcionki dla nagłówków */
+    position: absolute;
+    left: 0; /* Umieść element po lewej stronie */
+    margin: 0; /* Usuń domyślne marginesy */
 }
+
+
+
 
 .space {
     display: inline-block;
@@ -522,6 +535,35 @@
         margin-bottom: 10px;
     }
 }
+
+.additional-info {
+    position: absolute;
+    bottom: 10px; /* Przyczepione do dołu flight-info */
+    left: 10px; /* Przyczepione do lewej krawędzi flight-info */
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.additional-info p {
+    margin: 5px 0; /* Odstępy między wierszami */
+    text-align: left; /* Umieść element po lewej stronie */
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    color: #243751;
+}
+
+.additional-info .details-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.additional-info .details-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
 
   
 

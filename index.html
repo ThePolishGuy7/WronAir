@@ -210,6 +210,36 @@
           </div>
         </a>
       </div>
+      <!-- Tile 5 -->
+      <div class="tile">
+        <a href="oferta5.html">
+          <img src="img/new_jork.webp" alt="Nowy Jork">
+          <div class="tile-info">
+            <h3>Nowy Jork</h3>
+            <p class="price"><span style="font-size: 16px;">już od </span>1400 zł*</p>
+          </div>
+        </a>
+      </div>
+      <!-- Tile 6 -->
+      <div class="tile">
+        <a href="oferta6.html">
+          <img src="img/barcelona.webp" alt="Barcelona">
+          <div class="tile-info">
+            <h3>Barcelona</h3>
+            <p class="price"><span style="font-size: 16px;">już od </span>500 zł*</p>
+          </div>
+        </a>
+      </div>
+      <!-- Tile 7 -->
+      <div class="tile">
+        <a href="oferta7.html">
+          <img src="img/ateny.webp" alt="Ateny">
+          <div class="tile-info">
+            <h3>Ateny</h3>
+            <p class="price"><span style="font-size: 16px;">już od </span>350 zł*</p>
+          </div>
+        </a>
+      </div>
       <!-- Możesz dodać kolejne kafelki według potrzeb -->
     </div>
     
@@ -226,7 +256,8 @@
   </div>
 
   <script>
-    (function() {
+    (// Karuzela
+    function () {
       const carousel = document.getElementById('carousel');
       const prevBtn = document.getElementById('prev');
       const nextBtn = document.getElementById('next');
@@ -238,106 +269,118 @@
       let currentTranslate = 0;
       let prevTranslate = 0;
       let animationID;
-      
-      // Funkcja ustalająca szerokość kafelka (zmienia się przy resize lub mobilnym widoku)
-      function getTileWidth() {
-        return tiles[0].offsetWidth + parseInt(getComputedStyle(tiles[0]).marginLeft) + parseInt(getComputedStyle(tiles[0]).marginRight);
+      let autoSlideInterval;
+      // Funkcja zwracająca szerokość kafelka wraz z marginesami
+    function getTileWidth() {
+      return (
+        tiles[0].offsetWidth +
+        parseInt(getComputedStyle(tiles[0]).marginLeft) +
+        parseInt(getComputedStyle(tiles[0]).marginRight)
+      );
+    }
+    // Funkcja ustawiająca pozycję karuzeli na podstawie indeksu
+    function setPositionByIndex() {
+      currentTranslate = -currentIndex * getTileWidth();
+      prevTranslate = currentTranslate;
+      setCarouselPosition();
+    }
+    // Funkcja ustawiająca pozycję karuzeli
+    function setCarouselPosition() {
+      carousel.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    // Funkcja resetująca automatyczne przesuwanie karuzeli
+    function updateIndicators() {
+      indicatorsContainer.innerHTML = '';
+      for (let i = 0; i < tiles.length-2; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('indicator');
+        if (i === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          setPositionByIndex();
+          updateIndicators();
+          resetAutoSlide();
+        });
+        indicatorsContainer.appendChild(dot);
       }
-      
-      // Uaktualnienie pozycji karuzeli
-      function setPositionByIndex() {
-        currentTranslate = -currentIndex * getTileWidth();
-        prevTranslate = currentTranslate;
-        setCarouselPosition();
-      }
-      
-      function setCarouselPosition() {
-        carousel.style.transform = `translateX(${currentTranslate}px)`;
-      }
-      
-      // Aktualizacja wskaźników
-      function updateIndicators() {
-        indicatorsContainer.innerHTML = '';
-        for (let i = 0; i < tiles.length; i++) {
-          const dot = document.createElement('button');
-          dot.classList.add('indicator');
-          if (i === currentIndex) dot.classList.add('active');
-          dot.addEventListener('click', () => {
-            currentIndex = i;
-            setPositionByIndex();
-            updateIndicators();
-          });
-          indicatorsContainer.appendChild(dot);
-        }
-      }
-      
-      updateIndicators();
-      
-      // Obsługa przycisków nawigacji
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : tiles.length - 1;
-        setPositionByIndex();
-        updateIndicators();
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex < tiles.length - 1) ? currentIndex + 1 : 0;
-        setPositionByIndex();
-        updateIndicators();
-      });
-      
-      // Drag – zdarzenia myszy
-      carousel.addEventListener('mousedown', dragStart);
-      carousel.addEventListener('mouseup', dragEnd);
-      carousel.addEventListener('mouseleave', dragEnd);
-      carousel.addEventListener('mousemove', dragAction);
-      
-      // Drag – zdarzenia dotykowe (dla urządzeń mobilnych)
-      carousel.addEventListener('touchstart', dragStart);
-      carousel.addEventListener('touchend', dragEnd);
-      carousel.addEventListener('touchmove', dragAction);
-      
-      function dragStart(event) {
-        isDragging = true;
-        startPos = getPositionX(event);
-        carousel.classList.add('grabbing');
-        // Anulujemy animację (jeśli jest)
-        cancelAnimationFrame(animationID);
-      }
-      
-      function dragEnd() {
-        if (!isDragging) return;
-        isDragging = false;
-        carousel.classList.remove('grabbing');
-        // Obliczamy przesunięcie i aktualizujemy currentIndex
-        const movedBy = currentTranslate - prevTranslate;
-        if (movedBy < -100 && currentIndex < tiles.length - 1)
-          currentIndex++;
-        if (movedBy > 100 && currentIndex > 0)
-          currentIndex--;
-        setPositionByIndex();
-        updateIndicators();
-      }
-      
-      function dragAction(event) {
-        if (!isDragging) return;
-        const currentPosition = getPositionX(event);
-        const diff = currentPosition - startPos;
-        currentTranslate = prevTranslate + diff;
-        setCarouselPosition();
-      }
-      
-      function getPositionX(event) {
-        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-      }
-      
-      // Aktualizacja pozycji przy zmianie rozmiaru
-      window.addEventListener('resize', setPositionByIndex);
-      
-      // Inicjalizacja pozycji karuzeli
+    }
+    // Funkcja resetująca automatyczne przesuwanie karuzeli
+    updateIndicators();
+    // Funkcja resetująca automatyczne przesuwanie karuzeli
+    prevBtn.addEventListener('click', () => {
+      currentIndex = currentIndex > 0 ? currentIndex - 1 : tiles.length - 3;
       setPositionByIndex();
-      
-    })();
+      updateIndicators();
+      resetAutoSlide();
+    });
+    // Funkcja resetująca automatyczne przesuwanie karuzeli
+    nextBtn.addEventListener('click', () => {
+      currentIndex = currentIndex < tiles.length - 3 ? currentIndex + 1 : 0;
+      setPositionByIndex();
+      updateIndicators();
+      resetAutoSlide();
+    });
+    // Funkcja resetująca automatyczne przesuwanie karuzeli
+    carousel.addEventListener('mousedown', dragStart);
+    carousel.addEventListener('mouseup', dragEnd);
+    carousel.addEventListener('mouseleave', dragEnd);
+    carousel.addEventListener('mousemove', dragAction);
+
+    carousel.addEventListener('touchstart', dragStart);
+    carousel.addEventListener('touchend', dragEnd);
+    carousel.addEventListener('touchmove', dragAction);
+    //
+    function dragStart(event) {
+      isDragging = true;
+      startPos = getPositionX(event);
+      carousel.classList.add('grabbing');
+      cancelAnimationFrame(animationID);
+    }
+    function dragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      carousel.classList.remove('grabbing');
+      const movedBy = currentTranslate - prevTranslate;
+      if (movedBy < -100 && currentIndex < tiles.length - 3) currentIndex++;
+      if (movedBy > 100 && currentIndex > 0) currentIndex--;
+      setPositionByIndex();
+      updateIndicators();
+      resetAutoSlide();
+    }
+    //
+    function dragAction(event) {
+      if (!isDragging) return;
+      const currentPosition = getPositionX(event);
+      const diff = currentPosition - startPos;
+      currentTranslate = prevTranslate + diff;
+      setCarouselPosition();
+    }
+
+    // Funkcja zwracająca pozycję X zdarzenia
+    function getPositionX(event) {
+      return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+    // Funkcja obsługująca zmianę rozmiaru okna
+    window.addEventListener('resize', setPositionByIndex);
+    // Ustawienie pozycji karuzeli na podstawie indeksu
+    setPositionByIndex();
+
+    // Automatyczne przesuwanie karuzeli co 3 sekundy
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => {
+        currentIndex = currentIndex < tiles.length - 3 ? currentIndex + 1 : 0;
+        setPositionByIndex();
+        updateIndicators();
+      }, 3000); // 3 sekundy
+    }
+    // Funkcja resetująca automatyczne przesuwanie karuzeli
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+    // Uruchomienie automatycznego przesuwania karuzeli
+    startAutoSlide();
+  })();
   </script>
   <!--NEWSLETTER-->
   <div class="newsletter-container">

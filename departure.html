@@ -99,13 +99,13 @@
 
   <!-- Element Departure -->
   <main class="content">
-    <h1>Wybierz godzinę wylotu w dniu: 22.12.2024</h1>
-    <h2><span class="spaces"></span>Warszawa ------------ <span><img src="img/samolot.png" alt="Plane Icon" class="icon"></span> ------------ Nowy Jork</h2>
+    <h1>Wybierz godzinę wylotu w dniu: <span id="departure_date-display"></span></h1>
+    <h2><span class="spaces"></span><span id="from-display3"></span> ------------ <span><img src="img/samolot.png" alt="Plane Icon" class="icon"></span> ------------ <span id = "to-display3"></span></h2>
     <section class="departure-container">
         <div class="flight-options">
             <!-- Flight Option 1 -->
             <div class="flight-info">
-                <h2><strong>Warszawa [WAW]<span class="space"></span>Nowy Jork [JFK]</strong></h2>
+                <h2><strong><span id="from-display"></span><span class="space"></span><span id ="to-display"></strong></h2>
                 <p class="hour">9h 35min</p>
                 <h2>12:35 -------------------- <span><img src="img/clock.png" alt="Clock Icon" class="icon"></span> -------------------- 16:10</h2>
                 <p>BEZPOŚREDNI</p>
@@ -143,7 +143,7 @@
         <div class="flight-options">
           <!-- Flight Option 2 -->
           <div class="flight-info">
-              <h2><strong>Warszawa [WAW]<span class="space"></span>Nowy Jork [JFK]</strong></h2>
+            <h2><strong><span id="from-display1"></span><span class="space"></span><span id ="to-display1"></strong></h2>
               <p class="hour">9h 35min</p>
               <h2>12:35 -------------------- <span><img src="img/clock.png" alt="Clock Icon" class="icon"></span> -------------------- 16:10</h2>
               <p>BEZPOŚREDNI</p>
@@ -181,7 +181,7 @@
       <div class="flight-options">
         <!-- Flight Option 3 -->
         <div class="flight-info">
-            <h2><strong>Warszawa [WAW]<span class="space"></span>Nowy Jork [JFK]</strong></h2>
+          <h2><strong><span id="from-display2"></span><span class="space"></span><span id ="to-display2"></strong></h2>
             <p class="hour">9h 35min</p>
             <h2>12:35 -------------------- <span><img src="img/clock.png" alt="Clock Icon" class="icon"></span> -------------------- 16:10</h2>
             <p>BEZPOŚREDNI</p>
@@ -218,7 +218,7 @@
     </div>
     <div class="price-container">
       <h2>Cena całkowita: <span class="price-value">0.00 PLN</span></h2>
-      <button class="return-button">Wybierz lot powrotny</button>
+      <a id="nextPageLink" class="return-button" href="#">Wybierz lot powrotny</a>
     </div>
     </section>
   </main>
@@ -306,5 +306,47 @@
       });
     });
   </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  // Pobierz parametry z URL
+  const params = new URLSearchParams(window.location.search);
+  const tripType = params.get('trip_type') || 'round-trip';
+  const from = params.get('from') || 'Nieznane';
+  const to = params.get('to') || 'Nieznane';
+  const passengers = params.get('passengers') || '1';
+  const departureDate = params.get('departure_date') || 'Brak daty';
+  const returnDate = params.get('return_date') || 'Brak daty';
+
+  // Wyświetlanie parametrów w elementach strony
+  document.getElementById('from-display').textContent = from;
+  document.getElementById('to-display').textContent = to;
+  document.getElementById('from-display1').textContent = from;
+  document.getElementById('to-display1').textContent = to;
+  document.getElementById('from-display2').textContent = from;
+  document.getElementById('to-display2').textContent = to;
+
+  // Ucinanie 4 ostatnich znaków dla from-display3 i to-display3
+  document.getElementById('from-display3').textContent = from.slice(0, -6);
+  document.getElementById('to-display3').textContent = to.slice(0, -6);
+
+  document.getElementById('departure_date-display').textContent = departureDate;
+
+  // Tworzenie linku do kolejnej strony
+  const nextPageLink = document.getElementById("nextPageLink");
+  if (nextPageLink) {
+    let nextPageURL;
+    if (tripType === 'round-trip') {
+      nextPageURL = `return.html?trip_type=${tripType}&from=${from}&to=${to}&passengers=${passengers}&departure_date=${departureDate}&return_date=${returnDate}`;
+      nextPageLink.textContent = 'Wybierz lot powrotny';
+    } else if (tripType === 'one-way') {
+      nextPageURL = `oneway.html?trip_type=${tripType}&from=${from}&to=${to}&passengers=${passengers}&departure_date=${departureDate}`;
+      nextPageLink.textContent = 'Wprowadź dane pasażerów';
+    }
+
+    nextPageLink.href = nextPageURL; // Ustawienie linku
+    console.log('Przekierowanie do:', nextPageURL); // Debugowanie
+  }
+});
+</script>
 </body>
 </html>

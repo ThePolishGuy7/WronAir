@@ -1,713 +1,776 @@
 /* Wyzerowanie marginesów/paddingów i box-sizing */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Podstawowy styl body */
-  body {
-    font-family: Calibri, sans-serif;
-    font-weight: bold;
-    background-color: #fff;
-    color: #333;
-    overflow-x: hidden;
-    width: 100%;
-  }
-  
-  /* --------------------------------------------------
-  HEADER 
-  -------------------------------------------------- */
-  .header-with-logo {
-    position: relative;
-    width: 100%;
-    height: 110px;
-    background-color: #243751;
-  }
-  
-  .logo-container {
-    position: absolute;
-    z-index: 10;
-    top: 10px;
-    left: 14px;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-container img {
-    height: 80%;
-    max-height: 100px;
-    width: 20vw;
-    object-fit: contain;
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .top-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40px;
-  }
-  
-  .top-bar-content {
-    padding: 0 44px;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  .login-link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 20px;
-  }
-  
-  /* WYBÓR JĘZYKA (desktop) */
-  .language-switch {
-    position: relative;
-    z-index: 9;
-  }
-  
-  .lang-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 6px 12px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .lang-btn:hover {
-    background-color: #1a2a45;
-  }
-  
-  .flag {
-    width: 24px;
-    height: auto;
-    margin-right: 6px;
-  }
-  
-  .language-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #243751;
-    list-style: none;
-    display: none;
-    margin: 0;
-    padding: 0;
-    z-index: 10;
-  }
-  
-  .language-dropdown.show {
-    display: block;
-  }
-  
-  .language-dropdown li {
-    display: flex;
-    align-items: center;
-    padding: 4px 8px;
-  }
-  
-  .language-dropdown li img.flag {
-    margin-right: 4px;
-    width: 20px;
-    height: auto;
-  }
-  
-  .language-dropdown li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-  }
-  
-  .language-dropdown li.current-language {
-    background-color: #1a2a45;
-  }
-  
-  .language-dropdown li:hover {
-    background-color: #2c3e50;
-  }
-  
-  .language-dropdown li.current-language:hover {
-    background-color: #1a2a45;
-  }
-  
-  /* MENU DESKTOP */
-  .main-menu {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-  }
-  
-  .nav-links li {
-    margin: 0 25px;
-    font-size: 1vw;
-  }
-  
-  .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    border: 1px solid transparent;
-    padding: 5px;
-    transition: color 0.3s ease, font-weight 0.3s ease;
-    transition: border-color 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    color: #9b9b9b;
-    border: 1px #ffffff solid;
-    padding: 5px;
-  }
-  
-  /* przycisk menu mobilnego */
-  .menu-toggle {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 0;
-    margin: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 20;
-  }
-  
-  .hamburger-bar {
-    display: block;
-    width: 85px;
-    height: 10px;
-    margin: 15px;
-    background-color: #fff;
-    transition: all 0.3s ease;
-  }
-  
-  /* MENU MOBILNE */
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 70%;
-    height: 100vh;
-    background-color: #243751;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 15;
-    display: flex;
-    /* Zmieniamy wyrównanie pionowe z center na flex-start, 
-       dzięki czemu menu zacznie się od góry */
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 150px; /* Dodajemy padding, aby zawartość nie przylegała do samej krawędzi */
-  }
-  
-  .mobile-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  
-  .mobile-menu ul li {
-    margin: 40px 0;
-  }
-  
-  .mobile-menu ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 40px;
-  }
-  
-  .mobile-menu.open {
-    transform: translateX(0);
-  }
-  
-  /* Wybór języka (mobile) */
-  .language-switch-mobile {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .language-switch-mobile .language-dropdown {
-    left: auto;
-    right: 0;
-    margin-top: 10px;
-  }
-  
-  
-  
-  /* --------------------------------------------------
-  STOPKA
-  -------------------------------------------------- */
-  footer {
-    font-family: Calibri, sans-serif;
-    font-size: 20px;
-    background-color: #243751;
-    color: #fff;
-    padding: 40px 0;
-  }
-  
-  .footer-container.search-bar-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    column-gap: 80px;
-    max-width: 1920px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-  }
-  
-  .footer-container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    column-gap: 80px;
-    max-width: 1920px;
-    margin: 0 auto;
-  }
-  
-  .footer-column {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-    max-width: 300px;
-    border-bottom: 2px solid #fff;
-    padding-bottom: 8px;
-    margin: 0 auto;
-  }
-  
-  .search-bar input {
-    flex: 1;
-    border: none;
-    background: none;
-    color: #fff;
-    font-size: 20px;
-    outline: none;
-  }
-  
-  .search-bar input::placeholder {
-    color: #aaa;
-  }
-  
-  .search-bar button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .search-bar button img {
-    width: 24px;
-    height: auto;
-  }
-  
-  .footer-links a {
-    font-family: Calibri, sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: underline;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  .footer-links a:hover {
-    color: #9b9b9b;
-  }
-  
-  .payment-title,
-  .social-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .payment-options {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    justify-content: center;
-  }
-  
-  .payment-options a img {
-    width: 50px;
-    height: auto;
-  }
-  
-  .social-media a {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-    justify-content: center;
-  }
-  
-  .social-media a img {
-    width: 24px;
-    height: auto;
-    margin-right: 15px;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-  }
-  
-  .footer-bottom a img {
-    margin-top: 10px;
-    width: 100px;
-    height: auto;
-  }
-  
-  .footer-logo {
-    background-color: #fff;
-    text-align: left;
-    padding: 20px;
-  }
-  .footer-logo img {
-    max-width: 25%;
-  }
- /* --------------------------------------------------
-  DEPARTURE
-  -------------------------------------------------- */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Podstawowy styl body */
+body {
+  font-family: Calibri, sans-serif;
+  font-weight: bold;
+  background-color: #fff;
+  color: #333;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* --------------------------------------------------
+HEADER 
+-------------------------------------------------- */
+.header-with-logo {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  background-color: #243751;
+}
+
+.logo-container {
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  left: 14px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 80%;
+  max-height: 100px;
+  width: 20vw;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+}
+
+.top-bar-content {
+  padding: 0 44px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.login-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+/* WYBÓR JĘZYKA (desktop) */
+.language-switch {
+  position: relative;
+  z-index: 9;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.lang-btn:hover {
+  background-color: #1a2a45;
+}
+
+.flag {
+  width: 24px;
+  height: auto;
+  margin-right: 6px;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #243751;
+  list-style: none;
+  display: none;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.language-dropdown.show {
+  display: block;
+}
+
+.language-dropdown li {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+}
+
+.language-dropdown li img.flag {
+  margin-right: 4px;
+  width: 20px;
+  height: auto;
+}
+
+.language-dropdown li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.language-dropdown li.current-language {
+  background-color: #1a2a45;
+}
+
+.language-dropdown li:hover {
+  background-color: #2c3e50;
+}
+
+.language-dropdown li.current-language:hover {
+  background-color: #1a2a45;
+}
+
+/* MENU DESKTOP */
+.main-menu {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0 25px;
+  font-size: 1vw;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid transparent;
+  padding: 5px;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+  transition: border-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #9b9b9b;
+  border: 1px #ffffff solid;
+  padding: 5px;
+}
+
+/* przycisk menu mobilnego */
+.menu-toggle {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  margin: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 85px;
+  height: 10px;
+  margin: 15px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+/* MENU MOBILNE */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100vh;
+  background-color: #243751;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 15;
+  display: flex;
+  /* Zmieniamy wyrównanie pionowe z center na flex-start, 
+     dzięki czemu menu zacznie się od góry */
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 150px; /* Dodajemy padding, aby zawartość nie przylegała do samej krawędzi */
+}
+
+.mobile-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.mobile-menu ul li {
+  margin: 40px 0;
+}
+
+.mobile-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 40px;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Wybór języka (mobile) */
+.language-switch-mobile {
+  position: relative;
+  display: inline-block;
+}
+
+.language-switch-mobile .language-dropdown {
+  left: auto;
+  right: 0;
+  margin-top: 10px;
+}
+
+
+
+/* --------------------------------------------------
+STOPKA
+-------------------------------------------------- */
+footer {
+  font-family: Calibri, sans-serif;
+  font-size: 20px;
+  background-color: #243751;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-container.search-bar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  column-gap: 80px;
+  max-width: 1920px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.footer-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  column-gap: 80px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1;
+  text-align: center;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 8px;
+  margin: 0 auto;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 20px;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: #aaa;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar button img {
+  width: 24px;
+  height: auto;
+}
+
+.footer-links a {
+  font-family: Calibri, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: underline;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.footer-links a:hover {
+  color: #9b9b9b;
+}
+
+.payment-title,
+.social-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.payment-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.payment-options a img {
+  width: 50px;
+  height: auto;
+}
+
+.social-media a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  justify-content: center;
+}
+
+.social-media a img {
+  width: 24px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+.footer-bottom a img {
+  margin-top: 10px;
+  width: 100px;
+  height: auto;
+}
+
+.footer-logo {
+  background-color: #fff;
+  text-align: left;
+  padding: 20px;
+}
+.footer-logo img {
+  max-width: 25%;
+}
+/* --------------------------------------------------
+DEPARTURE
+-------------------------------------------------- */
 /* Main container styling */
 .content {
-    padding: 20px;
-    max-width: 1800px;
-    margin: 0 auto;
+  padding: 20px;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 .spaces{
-    display: inline-block;
-    width: 40px; /* Adjust the width as needed */
+  display: inline-block;
+  width: 40px; /* Adjust the width as needed */
 }
 
 .icon {
-    width: 1em; /* Adjust the size to match the text size */
-    height: auto; /* Maintain the aspect ratio */
-    vertical-align: middle; /* Align the icon with the middle of the text */
-    margin: 0 10px; /* Add spacing around the icon */
+  width: 1em; /* Adjust the size to match the text size */
+  height: auto; /* Maintain the aspect ratio */
+  vertical-align: middle; /* Align the icon with the middle of the text */
+  margin: 0 10px; /* Add spacing around the icon */
 }
 
 .content h1 {
-    font-size: 2rem;
-    text-align: left;
-    color: #243751;
+  font-size: 2rem;
+  text-align: left;
+  color: #243751;
 }
 .content h2{
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .departure-container h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .flight-options {
-    display: flex;
-    justify-content: space-between; /* Create space between left and right sections */
-    height: 320px;
-    margin: 20px 0;
-    background-color: #f5f5f5;
+  display: flex;
+  justify-content: space-between; /* Create space between left and right sections */
+  height: 320px;
+  margin: 20px 0;
+  background-color: #f5f5f5;
 }
 
 .flight-info, .flight-prices {
-    flex: 1; /* Each occupies half the width */
-    box-sizing: border-box; /* Ensure padding does not affect width */
+  flex: 1; /* Each occupies half the width */
+  box-sizing: border-box; /* Ensure padding does not affect width */
 }
 
 .flight-info {
-    text-align: left; /* Align content to the left */
-    position: relative;
+  text-align: left; /* Align content to the left */
+  position: relative;
 }
 
 .flight-info p {
-    margin: 0; /* Brak dodatkowego odstępu między akapitami */
-    font-size: 15px; /* Rozmiar tekstu */
-    color: #555;
-    text-align: center;
-    line-height: 1; /* Zmniejsz wysokość linii do minimum */
+  margin: 0; /* Brak dodatkowego odstępu między akapitami */
+  font-size: 15px; /* Rozmiar tekstu */
+  color: #555;
+  text-align: center;
+  line-height: 1; /* Zmniejsz wysokość linii do minimum */
 }
 .flight-info .hour{
-  padding-top: 40px;
+padding-top: 40px;
 }
 
 .flight-info h2 {
-    font-size: 28px;
-    text-align: center;
+  font-size: 28px;
+  text-align: center;
 }
 
 .flight-info h3 {
-    font-size: 16px; /* Rozmiar czcionki dla nagłówków */
-    position: absolute;
-    left: 0; /* Umieść element po lewej stronie */
-    margin: 0; /* Usuń domyślne marginesy */
+  font-size: 16px; /* Rozmiar czcionki dla nagłówków */
+  position: absolute;
+  left: 0; /* Umieść element po lewej stronie */
+  margin: 0; /* Usuń domyślne marginesy */
 }
 
 .space {
-    display: inline-block;
-    width: 400px; /* Adjust the width as needed */
+  display: inline-block;
+  width: 400px; /* Adjust the width as needed */
 }
 
 .flight-prices {
-  display: flex; /* Use flexbox layout */
-  flex-direction: row; /* Align boxes in a row (horizontal) */
-  align-items: stretch; /* Ensure all boxes stretch to the same height */
-  text-align: center;
-  border: 2px solid #243751; /* Optional border around the container */
+display: flex; /* Use flexbox layout */
+flex-direction: row; /* Align boxes in a row (horizontal) */
+align-items: stretch; /* Ensure all boxes stretch to the same height */
+text-align: center;
 }
 
 .price-box {
-  flex: 1; /* Make all boxes equally wide */
-  background-color: #f5f5f5;
-  border-right: 2px solid #243751; /* Add border between boxes */
-  height: 100%;
-  display: flex; /* Use flexbox for aligning content inside the box */
-  flex-direction: column; /* Arrange content vertically */
-  justify-content: space-between; /* Push content to top and bottom */
-  align-items: center; /* Center content horizontally */
+flex: 1; /* Make all boxes equally wide */
+background-color: #f5f5f5;
+border: 2px solid #243751; /* Add border between boxes */
+height: 100%;
+display: flex; /* Use flexbox for aligning content inside the box */
+flex-direction: column; /* Arrange content vertically */
+justify-content: space-between; /* Push content to top and bottom */
+align-items: center; /* Center content horizontally */
 }
 .price-box p {
-  font-size: 1rem;
-  color: #333;
+font-size: 1rem;
+color: #333;
 }
 .price-box h1{
-  font-size: 28px;
-  padding-bottom: 40px;
+font-size: 28px;
+padding-bottom: 40px;
 }
 
 .price-box h2{
-  font-size: 20px;
-  padding-bottom: 20px;
+font-size: 20px;
+padding-bottom: 20px;
 }
 
 .price-box .price {
-  font-size: 35px;
-  font-weight: bold;
-  color: #243751;
+font-size: 35px;
+font-weight: bold;
+color: #243751;
 }
 
 .price-box .exception{
-  padding-top: 20px;
+padding-top: 20px;
 }
 
 .price-box button {
-  width: 100%; /* Make the button as wide as the box */
-  padding: 20px;
-  font-size: 1rem;
-  background-color: #243751;
-  color: #ffffff;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  align-self: stretch; /* Ensure the button stretches horizontally */
-  margin-top: auto; /* Push the button to the bottom */
+width: 100%; /* Make the button as wide as the box */
+padding: 20px;
+font-size: 1rem;
+background-color: #243751;
+color: #ffffff;
+border: none;
+font-weight: bold;
+cursor: pointer;
+transition: background-color 0.3s, transform 0.2s;
+align-self: stretch; /* Ensure the button stretches horizontally */
+margin-top: auto; /* Push the button to the bottom */
 }
 
 .price-box button:hover {
-  background-color: #0056b3;
+background-color: #0056b3;
 }
 
 .price-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #4A5568; /* Tło podobne do szarego */
-  color: white;
-  padding: 10px 15px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+background-color: #4A5568; /* Tło podobne do szarego */
+color: white;
+padding: 10px 15px;
+font-family: Arial, sans-serif;
+font-size: 14px;
 }
 
 .price-container h2 {
-  font-weight: bold;
-  padding-top: 20px;
-  padding-left: 30px;
-  color: #ffffff;
+font-weight: bold;
+padding-top: 20px;
+padding-left: 30px;
+color: #ffffff;
 }
 
 .price-value {
-  font-weight: bold;
-  margin-left: 5px;
+font-weight: bold;
+margin-left: 5px;
 }
 
 .return-button {
-  background-color: #C53030; /* Czerwony kolor przycisku */
-  color: white;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-size: 20px;
-  margin-right: 30px;
-  font-weight: bold;
-  border: 2px solid #243751; /* Dodajemy cienką obwódkę */
+background-color: #C53030; /* Czerwony kolor przycisku */
+color: white;
+padding: 8px 12px;
+cursor: pointer;
+font-size: 20px;
+margin-right: 30px;
+font-weight: bold;
+border: 2px solid #243751; /* Dodajemy cienką obwódkę */
 }
 
 .return-button:hover {
-  background-color: #a00; /* Ciemniejszy czerwony przy hover */
+background-color: #a00; /* Ciemniejszy czerwony przy hover */
 }
 
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .flight-options {
-        flex-direction: column; /* Stack sections vertically */
-    }
-
-    .flight-info, .flight-prices {
-        width: 100%; /* Make sections full-width */
-    }
-
-    .flight-prices {
-      flex-direction: column; /* Stack boxes vertically on small screens */
-    }
-    .price-box {
-      margin-bottom: 20px;
-    }
-}
 
 .additional-info {
-    position: absolute;
-    bottom: 10px; /* Przyczepione do dołu flight-info */
-    left: 10px; /* Przyczepione do lewej krawędzi flight-info */
-    font-size: 0.85rem;
-    color: #555;
+  position: absolute;
+  bottom: 10px; /* Przyczepione do dołu flight-info */
+  left: 10px; /* Przyczepione do lewej krawędzi flight-info */
+  font-size: 0.85rem;
+  color: #555;
 }
 
 .additional-info p {
-    margin: 5px 0; /* Odstępy między wierszami */
-    text-align: left; /* Umieść element po lewej stronie */
-    font-size: 20px;
-    font-weight: bold;
-    padding: 5px;
-    color: #243751;
+  margin: 5px 0; /* Odstępy między wierszami */
+  text-align: left; /* Umieść element po lewej stronie */
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  color: #243751;
 }
 
 .additional-info .details-link {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .additional-info .details-link:hover {
-    text-decoration: underline;
-    color: #0056b3;
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Responsywność dla tabletów i urządzeń mobilnych */
+@media (max-width: 1024px) {
+  .departure-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .flight-options {
+    flex-direction: column;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .flight-info, .flight-prices {
+    width: 100%;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+
+  .flight-prices {
+    flex-direction: column;
+  }
+
+  .price-box {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .price-box button {
+    width: 100%;
+  }
+
+  .content h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .content h2 {
+    font-size: 1rem;
+    text-align: center;
+  }
+  .additional-info {
+    padding: 5px; /* Zmniejsza padding */
+  }
+
+  .additional-info p {
+    margin: 3px 0; /* Zmniejsza odstępy między liniami */
+    font-size: 0.8rem; /* Zmniejsza rozmiar tekstu */
+  }
+}
+
+@media (max-width: 768px) {
+  .departure-container {
+    padding: 5px;
+  }
+
+  .flight-options {
+    margin: 5px 0;
+  }
+
+  .flight-info p, .flight-info h2 {
+    font-size: 0.9rem;
+  }
+
+  .price-box h1, .price-box h2, .price-box .price {
+    font-size: 1rem;
+  }
+
+  .price-box button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .additional-info {
+    padding: 5px; /* Zmniejsza padding */
+  }
+
+  .additional-info p {
+    margin: 3px 0; /* Zmniejsza odstępy między liniami */
+    font-size: 0.8rem; /* Zmniejsza rozmiar tekstu */
+  }
 }
 
 
-  
 
-  /* RESPONSYWNOŚĆ stopki */
+
+/* RESPONSYWNOŚĆ stopki */
 @media (max-width: 1280px) {
-    .footer-container,
-    .footer-container.search-bar-row {
-      flex-direction: column;
-      align-items: center;
-    }
-    .footer-links a,
-    .social-media a{
-      font-size: 30px;
-    }
-    .social-media a img {
-      width: 40px;
-    }
-    .payment-title {
-      font-size: 50%;
-      
-    }
-    .social-title {
-      font-size: 40px;
-    }
+  .footer-container,
+  .footer-container.search-bar-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-links a,
+  .social-media a{
+    font-size: 30px;
+  }
+  .social-media a img {
+    width: 40px;
+  }
+  .payment-title {
+    font-size: 50%;
     
-    .footer-column {
-      margin-bottom: 20px;
-    }
-    .search-bar {
-      max-width: 100%;
-      
-    }
+  }
+  .social-title {
+    font-size: 40px;
+  }
+  
+  .footer-column {
+    margin-bottom: 20px;
+  }
+  .search-bar {
+    max-width: 100%;
+    
+  }
 
-    .lang-btn {
-      font-size: 40px;
-      padding: 10px 20px; /* przykładowe powiększenie paddingu */
-    }
+  .lang-btn {
+    font-size: 40px;
+    padding: 10px 20px; /* przykładowe powiększenie paddingu */
+  }
+}
+
+/* ---------------------------------------
+MEDIA QUERIES - WYGLĄD MOBILE
+--------------------------------------- */
+@media (max-width: 1280px) {
+  .header-with-logo {
+      height: auto;
+      padding: 10px 0;
+  }
+  .logo-container {
+      position: static;
+      margin-left: 10px;
+  }
+  .logo-container img {
+      max-height: 100px;
+  }
+  .top-bar {
+      display: none;
+  }
+  .main-menu {
+      display: none;
+  }
+  .menu-toggle {
+      display: block;
+  }
+  .logo-container img {
+      width: auto;
+  }
+
+  /* Przycisk wyszukiwania również na pełnej szerokości i większy */
+  .search-button {
+    width: 100%;
+    height: 9cqb;
+    font-size: 40px;
+    padding: 10px;
   }
   
-  /* ---------------------------------------
-  MEDIA QUERIES - WYGLĄD MOBILE
-  --------------------------------------- */
-  @media (max-width: 1280px) {
-    .header-with-logo {
-        height: auto;
-        padding: 10px 0;
-    }
-    .logo-container {
-        position: static;
-        margin-left: 10px;
-    }
-    .logo-container img {
-        max-height: 100px;
-    }
-    .top-bar {
-        display: none;
-    }
-    .main-menu {
-        display: none;
-    }
-    .menu-toggle {
-        display: block;
-    }
-    .logo-container img {
-        width: auto;
-    }
-  
-    /* Przycisk wyszukiwania również na pełnej szerokości i większy */
-    .search-button {
-      width: 100%;
-      height: 9cqb;
-      font-size: 40px;
-      padding: 10px;
-    }
-    
-    .form-half {
-      width: 50%;
-      height: 90px;
-    }
-    
-    .form-half input {
-      height: 90px;
-      font-size: 30px;
-      
-    }
+  .form-half {
+    width: 50%;
+    height: 90px;
   }
   
+  .form-half input {
+    height: 90px;
+    font-size: 30px;
+    
+  }
+}

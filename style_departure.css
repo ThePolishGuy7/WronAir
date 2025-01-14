@@ -578,12 +578,14 @@ background-color: #a00; /* Ciemniejszy czerwony przy hover */
 
 
 .additional-info {
-  position: absolute;
-  bottom: 10px; /* Przyczepione do dołu flight-info */
-  left: 10px; /* Przyczepione do lewej krawędzi flight-info */
-  font-size: 0.85rem;
-  color: #555;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Wyśrodkowanie tekstu w pionie */
+  align-items: center; /* Wyśrodkowanie tekstu w poziomie */
+  font-size: 14px;
+  margin-top: 10px;
 }
+
 
 .additional-info p {
   margin: 5px 0; /* Odstępy między wierszami */
@@ -625,12 +627,15 @@ background-color: #a00; /* Ciemniejszy czerwony przy hover */
   }
 
   .flight-prices {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .price-box {
-    width: 100%;
-    margin: 10px 0;
+    height: auto; /* lub wartość w px jeśli chcesz określić */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .price-box button {
@@ -687,6 +692,52 @@ background-color: #a00; /* Ciemniejszy czerwony przy hover */
     font-size: 0.8rem; /* Zmniejsza rozmiar tekstu */
   }
 }
+
+@media (min-width: 1025px) and (max-width: 1295px) {
+  .flight-options {
+    flex-direction: column; /* Zmień na układ pionowy */
+    align-items: center; /* Wyrównaj elementy do środka */
+    height: auto; /* Dynamiczna wysokość */
+  }
+
+  .flight-prices {
+    flex-direction: row;
+    flex-wrap: wrap; /* Pozwól na zawijanie elementów */
+    justify-content: center; /* Wyśrodkowanie */
+    gap: 20px; /* Dodaj odstępy między boxami */
+  }
+
+  .price-box {
+    height: auto; /* Dynamiczna wysokość */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .flight-info {
+    position: relative; /* Rodzic dla pozycjonowania relative */
+    display: flex; /* Flexbox do wyrównania elementów */
+    flex-direction: column; /* Elementy ułożone w kolumnie */
+    justify-content: center; /* Wyrównanie w pionie */
+    align-items: center; /* Wyrównanie w poziomie */
+    height: 100%; /* Pełna wysokość rodzica */
+  }
+  
+  .additional-info {
+    display: block; /* Zmiana na tradycyjny układ blokowy */
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  
+  .additional-info p {
+    margin: 5px 0; /* Ograniczenie odstępów między liniami */
+  }
+}
+
+
 
 
 

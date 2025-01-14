@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="img/logo_16.ico">
+  <link rel="shortcut icon" href="img/logo_32.ico">
+  <title>WronAir</title>
+  <link rel="stylesheet" href="style_upgrade_choice.css" />
+</head>
+<body>
+  <header class="header-with-logo">
+    <!-- Kontener na logo -->
+    <div class="logo-container">
+      <a href="landing-page.html">
+        <img src="img/logociemne.jpg" alt="Logo WronAir" />
+      </a>
+    </div>
+    
+    <!-- Przycisk hamburger -->
+    <button class="menu-toggle" id="menuToggle">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+    
+    <!-- Górny pasek -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <a href="#" class="login-link">Logowanie i rejestracja</a>
+        <div class="language-switch">
+          <button class="lang-btn" id="langButton">
+            <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+            PL
+          </button>
+          <ul class="language-dropdown" id="langDropdown">
+            <li class="current-language">
+              <a href="#">
+                <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                PL
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                ENG
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pasek menu (desktop) -->
+    <nav class="main-menu" id="mainNav">
+      <ul class="nav-links">
+        <li><a href="#">Strona Główna</a></li>
+        <li><a href="#">Odpraw się</a></li>
+        <li><a href="#">Upgrade</a></li>
+        <li><a href="#">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="#">O Nas</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Menu mobilne -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#">Logowanie i rejestracja</a></li>
+        <li><a href="#">Strona Główna</a></li>
+        <li><a href="#">Odpraw się</a></li>
+        <li><a href="#">Upgrade</a></li>
+        <li><a href="#">Usługi na Pokładzie</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="#">O Nas</a></li>
+        <li>
+          <div class="language-switch-mobile">
+            <button class="lang-btn" id="langButtonMobile">
+              <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+              PL
+            </button>
+            <ul class="language-dropdown" id="langDropdownMobile">
+              <li class="current-language">
+                <a href="#">
+                  <img src="img/Flag_of_Poland.svg" alt="PL" class="flag" />
+                  PL
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="img/Flag_of_the_United_States.svg.png" alt="ENG" class="flag" />
+                  ENG
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="upgrade-section">
+        <h1 class="upgrade-title">Upgrade</h1>
+        <div class="upgrade-layout">
+            <div class="upgrade-options">
+                <div class="option">
+                    <img src="img/luggage.webp" alt="Bagaż rejestrowany" />
+                    <h1>Bagaż rejestrowany</h1>
+                    <p class="kinds">10 kg | 20 kg | 30 kg</p>
+                    <button class="upgrade-btn" data-upgrade="luggage">Wybierz</button>
+                </div>
+                <div class="option">
+                    <img src="img/seat.webp" alt="Klasa siedzenia" />
+                    <h1>Klasa siedzenia</h1>
+                    <p class="kinds">Economy | Business | VIP</p>
+                    <button class="upgrade-btn" data-upgrade="seat">Wybierz</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    document.querySelectorAll('.upgrade-btn').forEach(button => {
+    button.addEventListener('click', event => {
+        const upgradeType = event.target.getAttribute('data-upgrade');
+
+        // Ustal docelową stronę w zależności od wyboru
+        let targetPage = '';
+        if (upgradeType === 'luggage') {
+            targetPage = 'upgrade_choice_luggage.html';
+        } else if (upgradeType === 'seat') {
+            targetPage = 'upgrade_choice_seat.html';
+        }
+
+        // Pobierz aktualny URL i jego parametry
+        const currentUrl = new URL(window.location.href);
+
+        // Utwórz nowy URL dla strony docelowej
+        const targetUrl = new URL(targetPage, currentUrl.origin);
+
+        // Dodaj istniejące parametry do nowego URL
+        targetUrl.searchParams.set('orderCode', currentUrl.searchParams.get('orderCode'));
+        targetUrl.searchParams.set('upgradeChoice', upgradeType);
+
+        // Przekieruj na nowy URL
+        window.location.href = targetUrl.href;
+    });
+});
+</script>
+
+
+  <footer>
+    <!-- Zawartość stopki -->
+    <div class="footer-container search-bar-row">
+      <div class="footer-column">
+        <form class="search-bar">
+          <input type="text" placeholder="Wprowadź szukany termin" />
+          <button type="submit">
+            <img src="img/search.png" alt="Szukaj" />
+          </button>
+        </form>
+      </div>
+      <div class="footer-column"></div>
+      <div class="footer-column"></div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="#">Odpraw się</a><br /><br />
+          <a href="#">Upgrade</a><br /><br />
+          <a href="#">Usługi na pokładzie</a><br /><br />
+          <a href="#">FAQ</a>
+        </div>
+        <p class="payment-title">Opcje płatności</p>
+        <div class="payment-options">
+          <a href="#"><img src="img/masterC.png" alt="Mastercard" /></a>
+          <a href="#"><img src="img/visa.png" alt="Visa" /></a>
+          <a href="#"><img src="img/ap.png" alt="Apple Pay" /></a>
+          <a href="#"><img src="img/paypal.png" alt="Paypal" /></a>
+          <a href="#"><img src="img/blik.png" alt="BLIK" /></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-links">
+          <a href="#">O nas</a><br /><br />
+          <a href="#">Bagaż</a><br /><br />
+          <a href="#">Informacje o odprawie</a><br /><br />
+          <a href="#">Pomoc</a><br /><br />
+          <a href="#">Posiłki i napoje</a><br /><br />
+          <a href="#">Promocje i oferty</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <p class="social-title">Śledź nas</p>
+        <div class="social-media">
+          <a href="#"><img src="img/ig.png" alt="Instagram" /> @WronAir</a><br />
+          <a href="#"><img src="img/twt.png" alt="Twitter" /> @WronAir</a><br />
+          <a href="#"><img src="img/ln.png" alt="LinkedIn" /> @WronAir</a><br />
+          <a href="#"><img src="img/facebook.png" alt="Facebook" /> @WronAir</a><br />
+          <a href="#"><img src="img/yt.png" alt="YouTube" /> @WronAir</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; WronAir.com 2024. Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
+  <div class="footer-logo">
+    <img src="img/logojasne.jpg" alt="Logo WronAir">
+  </div>
+
+  <!-- Skrypt do obsługi przycisków (hamburger, wybór języka) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuToggle.addEventListener("click", function() {
+        mobileMenu.classList.toggle("open");
+      });
+  
+      const langButton = document.getElementById("langButton");
+      const langDropdown = document.getElementById("langDropdown");
+      langButton.addEventListener("click", function() {
+        langDropdown.classList.toggle("show");
+      });
+  
+      const langButtonMobile = document.getElementById("langButtonMobile");
+      const langDropdownMobile = document.getElementById("langDropdownMobile");
+      langButtonMobile.addEventListener("click", function() {
+        langDropdownMobile.classList.toggle("show");
+      });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+    const tripTypeSelect = document.getElementById('trip-type');
+    const returnInputContainer = document.querySelector('.form-half:nth-child(2)'); // przyjmujemy, że druga połówka dotyczy powrotu
+    const departureInputContainer = document.querySelector('.form-half:nth-child(1)'); 
+
+    // Funkcja zmieniająca widoczność pola "Powrót"
+    function updateReturnVisibility() {
+    if (tripTypeSelect.value === 'one-way') {
+      // Ukryj pole powrotu
+      returnInputContainer.style.display = 'none';
+      // Dodaj klasę, która rozciąga pole wylotu
+      departureInputContainer.classList.add('full-width-departure');
+    } else {
+      returnInputContainer.style.display = 'flex';
+      departureInputContainer.classList.remove('full-width-departure');
+    }
+  }
+
+    // Uruchom przy starcie:
+    updateReturnVisibility();
+
+    // Nasłuchuj zmiany wyboru:
+    tripTypeSelect.addEventListener('change', updateReturnVisibility);
+  });
+  
+  </script>
+</body>
+</html>

@@ -104,6 +104,57 @@
 .upgrade-end-container .small-end{
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+  .text-linia {
+      font-size: 1.5rem;
+  }
+
+  .text-linia::before,
+  .text-linia::after {
+      flex: 0 0 15%; /* Adjust lines for smaller widths */
+      height: 4px; /* Reduce thickness for smaller screens */
+  }
+
+  .upgrade-end-container h1 {
+      font-size: 1.6rem;
+  }
+
+  .upgrade-end-container h2 {
+      font-size: 1rem;
+  }
+
+  .upgrade-end-container p {
+      font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-linia {
+      font-size: 1.2rem;
+  }
+
+  .text-linia::before,
+  .text-linia::after {
+      flex: 0 0 10%; /* Further adjust for very small devices */
+  }
+
+  .upgrade-end-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .upgrade-end-container h2 {
+      font-size: 1rem;
+  }
+
+  .upgrade-end-container p {
+      font-size: 0.8rem;
+  }
+
+  .upgrade-end-container {
+      padding: 10px; /* Add padding for small screens */
+  }
+}
   /* --------------------------------------------------
   HEADER 
   -------------------------------------------------- */

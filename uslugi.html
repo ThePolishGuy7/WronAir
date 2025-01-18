@@ -6,7 +6,7 @@
   <link rel="shortcut icon" href="img/logo_16.ico">
   <link rel="shortcut icon" href="img/logo_32.ico">
   <title>WronAir</title>
-  <link rel="stylesheet" href="style_upgrade_choice.css" />
+  <link rel="stylesheet" href="style_uslugi.css" />
 </head>
 <body>
   <header class="header-with-logo">
@@ -99,58 +99,33 @@
     </nav>
   </header>
 
+  <!-- Wybór uslugi -->
+
   <main>
-    <section class="upgrade-section">
-        <h1 class="upgrade-title">Upgrade</h1>
-        <div class="upgrade-layout">
-            <div class="upgrade-options">
+    <section class="service-section">
+        <h1 class="service-title">Wybierz szukaną usługę</h1>
+        <div class="service-layout">
+            <div class="service-options">
                 <div class="option">
-                    <img src="img/seat.webp" alt="Bagaż rejestrowany" />
-                    <h1>Klasa podróży</h1>
-                    <p class="kinds">Economy</p>
-                    <button class="upgrade-btn" data-upgrade="Economy">Posiadany</button>
+                    <img src="img/rozrywka.webp"/>
+                    <button class="service-btn" onclick="window.location.href='rozrywka.html';">Rozrywka</button>
                 </div>
                 <div class="option">
-                    <img src="img/seat.webp" alt="Klasa siedzenia" />
-                    <h1>Klasa podróży</h1>
-                    <p class="kinds">Business</p>
-                    <button class="upgrade-btn" data-upgrade="Business">250.00 zł</button>
+                    <img src="img/posilki.webp"/>
+                    <button class="service-btn">Posiłki</button>
                 </div>
                 <div class="option">
-                    <img src="img/seat.webp" alt="Bagaż rejestrowany" />
-                    <h1>Klasa podróży</h1>
-                    <p class="kinds">VIP</p>
-                    <button class="upgrade-btn" data-upgrade="VIP">500.00 zł</button>
+                    <img src="img/internet.webp"/>
+                    <button class="service-btn">Internet</button>
+                </div>
+                <div class="option">
+                    <img src="img/perfumy.webp"/>
+                    <a class="service-btn">Sklep Duty-Free</button>
                 </div>
             </div>
         </div>
     </section>
 </main>
-<script>
-    document.querySelectorAll('.upgrade-btn').forEach(button => {
-    button.addEventListener('click', event => {
-        const upgradeType = event.target.getAttribute('data-upgrade');
-
-        // Ustal docelową stronę w zależności od wyboru
-        let targetPage = 'upgrade_end.html';
-
-        // Pobierz aktualny URL i jego parametry
-        const currentUrl = new URL(window.location.href);
-
-        // Utwórz nowy URL dla strony docelowej
-        const targetUrl = new URL(targetPage, currentUrl.origin);
-
-        // Dodaj istniejące parametry do nowego URL
-        targetUrl.searchParams.set('orderCode', currentUrl.searchParams.get('orderCode'));
-        targetUrl.searchParams.set('upgradeChoice', currentUrl.searchParams.get('upgradeChoice'));
-        targetUrl.searchParams.set('seatType', upgradeType);
-
-        // Przekieruj na nowy URL
-        window.location.href = targetUrl.href;
-    });
-});
-</script>
-
 
   <footer>
     <!-- Zawartość stopki -->

@@ -430,176 +430,115 @@
     
   }
 
-/* Stylizacja sekcji Upgrade */
-/* Stylizacja nagłówka "Upgrade" */
-.upgrade-title {
+ /* ---------------------------------------
+  Services choice
+--------------------------------------- */
+
+/* Stylizacja sekcji service */
+.service-section {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.service-title {
     font-size: 30px;
     color: #243751;
     text-align: center;
     margin-bottom: 20px;
     margin-top: 0; /* Usuń nadmiar marginesów */
 }
-  
-/* Stylizacja sekcji Upgrade */
-.upgrade-section {
-    padding: 20px;
-    margin: 0 auto;
-}
 
-/* Układ dla zawartości sekcji Upgrade */
-.upgrade-layout {
+/* Układ dla zawartości sekcji service */
+.service-layout {
     display: flex;
-    align-items: center; /* Wyśrodkowanie pionowe */
-    justify-content: flex-start; /* Przesunięcie zawartości w lewo */
-    gap: 25px; /* Odstęp między lewą stroną a kafelkami */
-    min-height: 400px; /* Opcjonalnie można ustawić minimalną wysokość */
+    flex-direction: column; /* Domyślnie pionowy układ */
+    align-items: center; /* Wyśrodkowanie zawartości */
+    justify-content: center;
+    gap: 25px;
+    min-height: 400px;
+    margin-bottom: 20px;
 }
 
-
-.upgrade-content {
-    flex: 2; /* Zwiększenie szerokości lewej strony */
-    text-align: left; /* Tekst wyrównany do lewej */
+/* Kontener na kafelki */
+.service-options {
     display: flex;
-    flex-direction: column;
-}
-
-.upgrade-content h1, .upgrade-content p {
-    text-align: center; /* Wyśrodkowanie tekstu */
-}
-
-.upgrade-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center; /* Wyśrodkowanie przycisku */
-    margin-left:auto;/* Odstęp między formularzem a kafelkami */
-}
-
-.upgrade-form h2 {
-    font-size: 25px; /* Zmniejszenie rozmiaru czcionki */
-    white-space: nowrap; /* Zapobiega łamaniu linii */
-    overflow: hidden; /* Ukrywa tekst, jeśli nie mieści się w kontenerze */
-    text-overflow: ellipsis; /* Dodaje wielokropek, jeśli tekst się nie mieści */
-    margin: 10px 0; /* Odstępy nad i pod */
-}
-
-
-.upgrade-form input {
-    padding: 10px;
-    font-size: 1rem;
-    width: 50%; /* Zachowanie szerokości pola */
-    text-align: center; 
-}
-
-.upgrade-form button {
-    padding: 10px;
-    font-size: 1rem;
-    color: #ffffff;
-    background-color: #c00;
-    cursor: pointer;
-    font-weight: bold;
-    align-self: center; /* Wyśrodkowanie przycisku */
-    transition: background-color 0.3s ease;
-    border: 2px solid #243751;
-}
-
-.upgrade-form button:hover {
-    background-color: #a00;
-}
-
-/* Kafelki z ikonami */
-.upgrade-options {
-    display: flex;
-    flex: 3; /* Zwiększenie proporcji kafelków względem lewej strony */
-    gap: 40px; /* Zwiększenie odstępu między kafelkami */
+    flex-wrap: wrap; /* Pozwala na zawijanie elementów w wiersze */
+    gap: 20px;
     justify-content: center; /* Wyśrodkowanie kafelków w poziomie */
     align-items: center; /* Wyśrodkowanie kafelków w pionie */
-    box-sizing: none;
-    margin-right: 20px;
 }
 
+/* Każdy kafelek */
+/* 
+   flex: 1 1 250px oznacza:
+   - 1 -> flex-grow (może się rozszerzać),
+   - 1 -> flex-shrink (może się kurczyć),
+   - 250px -> bazowa szerokość (flex-basis).
+   max-width: 300px ogranicza wzrost powyżej 300px.
+*/
 .option {
-    flex: 1;
-    max-width: 350px; /* Ograniczenie szerokości kafelków */
-    background-color: #f5f5f5;
+    flex: 1 1 250px;
+    max-width: 300px;
+    background-color: #ffffff;
     border: 2px solid #243751;
     padding: 20px;
     text-align: center;
 }
 
 .option img {
-    width: 300px; /* Szerokość zdjęcia */
-    height: 300px; /* Wysokość zdjęcia */
-    object-fit: cover; /* Zapewnia odpowiednie przycięcie, jeśli proporcje zdjęcia są różne */
-    margin-bottom: 10px;
+    width: 100%; 
+    max-width: 250px; 
+    height: auto; 
+    object-fit: cover;
+    margin-bottom: 20px;
     border: 2px solid #243751;
 }
 
 .option .kinds {
-    font-size: 20px;
+    font-size: 18px;
     color: #333;
-    margin: 5px 0;
-    margin-bottom: 40px;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
-/* Responsywność dla urządzeń o szerokości mniejszej niż 768px */
-@media (max-width: 768px) {
-    .upgrade-layout {
-        flex-direction: column; /* Ułóż elementy w kolumnie */
-        gap: 20px;
-        align-items: center; /* Wyśrodkowanie całego układu */
-    }
-
-    .upgrade-options {
-        flex-direction: column; /* Ustawienie kafelków w kolumnie */
-        justify-content: center;
-        align-items: center; /* Wyśrodkowanie kafelków */
-        gap: 20px;
-    }
-
-    .option {
-        max-width: 100%; /* Ustawienie maksymalnej szerokości */
-        margin: 0 auto; /* Wyśrodkowanie kafelków */
-    }
-
-    .upgrade-form h2 {
-        font-size: 20px; /* Zmniejszenie rozmiaru czcionki */
-        word-wrap: break-word; /* Automatyczne zawijanie słów */
-        word-break: break-word; /* Zawijanie przy długich słowach */
-        white-space: normal; /* Umożliwienie zawijania tekstu */
-        text-align: center; /* Wyśrodkowanie tekstu */
-    }
-
-    .upgrade-form h1 {
-      font-size: 25px; /* Zmniejszenie rozmiaru czcionki */
-  }
+.option .service-btn {
+    padding: 10px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #c00;
+    cursor: pointer;
+    height: 50px; 
+    width: 100%; 
+    font-weight: bold;
+    align-self: center;
+    transition: background-color 0.3s ease;
+    border: 2px solid #243751;
+    margin-bottom: 10px;
 }
 
-/* Responsywność dla urządzeń o szerokości mniejszej niż 1400px */
-@media (max-width: 1400px) and (min-width: 768px) {
-    .upgrade-layout {
-        flex-direction: column; /* Ułóż elementy w kolumnie */
-        gap: 20px;
-        align-items: center; /* Wyśrodkowanie całego układu */
-    }
+.option .service-btn:hover {
+    background-color: #a00;
+}
 
-    .upgrade-options {
-        flex-direction: row; /* Kafelki w rzędzie */
-        justify-content: center;
-        align-items: center; /* Wyśrodkowanie kafelków */
-        gap: 20px;
-    }
+/* MEDIA QUERIES
+   Dodajemy przykładowe breakpointy, aby jeszcze lepiej dostosować layout. */
 
+/* Zmiany dla ekranów powyżej 768px */
+@media (min-width: 768px) {
+    .service-layout {
+        flex-direction: column; 
+        min-height: auto;
+    }
+}
+
+/* Zmiany dla małych ekranów (max 576px) */
+/* Jeśli chcesz, aby kafelki zajmowały pełną szerokość na bardzo małych ekranach */
+@media (max-width: 576px) {
     .option {
+        flex: 1 1 100%; /* Każdy kafelek będzie pełną szerokością */
         max-width: 100%;
-        margin: 0 auto;
     }
 }
 
-
-
-  
   /* ---------------------------------------
   MEDIA QUERIES - WYGLĄD MOBILE
   --------------------------------------- */

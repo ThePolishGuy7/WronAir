@@ -6,7 +6,7 @@
   <link rel="shortcut icon" href="img/logo_16.ico">
   <link rel="shortcut icon" href="img/logo_32.ico">
   <title>WronAir</title>
-  <link rel="stylesheet" href="style_upgrade_choice.css" />
+  <link rel="stylesheet" href="oferty_style.css" />
 </head>
 <body>
   <header class="header-with-logo">
@@ -100,57 +100,117 @@
   </header>
 
   <main>
-    <section class="upgrade-section">
-        <h1 class="upgrade-title">Upgrade</h1>
-        <div class="upgrade-layout">
-            <div class="upgrade-options">
-                <div class="option">
-                    <img src="img/seat.webp" alt="Bagaż rejestrowany" />
-                    <h1>Klasa podróży</h1>
-                    <p class="kinds">Economy</p>
-                    <button class="upgrade-btn" data-upgrade="Economy">Posiadany</button>
-                </div>
-                <div class="option">
-                    <img src="img/seat.webp" alt="Klasa siedzenia" />
-                    <h1>Klasa podróży</h1>
-                    <p class="kinds">Business</p>
-                    <button class="upgrade-btn" data-upgrade="Business">250.00 zł</button>
-                </div>
-                <div class="option">
-                    <img src="img/seat.webp" alt="Bagaż rejestrowany" />
-                    <h1>Klasa podróży</h1>
-                    <p class="kinds">VIP</p>
-                    <button class="upgrade-btn" data-upgrade="VIP">500.00 zł</button>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-<script>
-    document.querySelectorAll('.upgrade-btn').forEach(button => {
-    button.addEventListener('click', event => {
-        const upgradeType = event.target.getAttribute('data-upgrade');
+    <!-- Nagłówek sekcji -->
+    <h1 class="main-title">Rozrywka</h1>
+    
+    <!-- Przykładowy akapit, aby wypełnić treść jak na zrzucie ekranu -->
+    <p class="main-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      Sed sapien ipsum, bibendum vitae luctus vel, pellentesque vel urna. 
+      Sed lorem ligula, cursus venenatis elit sed, finibus vulputate nunc. 
+      Fusce faucibus urna leo, non ullamcorper mi dignissim et. 
+      Sed et aliquam risus, vitae consectetur metus. Suspendisse eleifend 
+      nec massa vel aliquam. Cras sapien nunc, ultricies sit amet tincidunt a, 
+      commodo sed arcu. Nunc sed massa sapien. Nulla posuere vel mauris ut tincidunt.
+      Etiam quis arcu rhoncus, tempor tellus non, vehicula ex. 
+      Quisque quis metus finibus, suscipit sem non, laoreet augue. Vestibulum ante 
+      ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
+      Morbi tempus lacus sit amet lorem varius gravida at nec quam. 
+      Integer eu dictum lacus. Sed imperdiet lorem ac laoreet convallis, 
+      quam odio tempor mi, a elementum enim arcu at eros.
+    </p>
+  
+    <!-- Sekcja z ofertami (filmy) -->
+    <div class="offers">
+      <div class="type">
+        <!-- Podtytuł, np. "Filmy" -->
+        <h2 class="type-heading">Filmy</h2>
+      
+      <!-- Kontener karuzeli - overflow hidden -->
+      <div class="carousel-container">
+        <!-- Tor karuzeli - animacja przesuwania w poziomie -->
+        <div class="carousel-track">
+          <!-- Zestaw kafelków (powtarzamy je dwukrotnie) -->
+          
+          <!-- 1. Pierwsza seria kafelków -->
+          <div class="option">
+            <img src="img/rozrywka/star_wars.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Star Wars</h3>
+          </div>
+          <div class="option">
+            <img src="img/posilki.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Film 2</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/forest_gump.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Forrest Gump</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/lew.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Król Lew</h3>
+          </div>
 
-        // Ustal docelową stronę w zależności od wyboru
-        let targetPage = 'upgrade_end.html';
+          <!-- 2. Druga seria kafelków - identyczna jak pierwsza -->
+          <div class="option">
+            <img src="img/rozrywka/star_wars.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Star Wars</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/spider_man.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Spider Man</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/forest_gump.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Forrest Gump</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/lew.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Król Lew</h3>
+          </div>
 
-        // Pobierz aktualny URL i jego parametry
-        const currentUrl = new URL(window.location.href);
+          <!-- 3. Druga seria kafelków - identyczna jak pierwsza -->
+          <div class="option">
+            <img src="img/rozrywka/star_wars.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Star Wars</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/spider_man.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Spider Man</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/forest_gump.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Forrest Gump</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/lew.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Król Lew</h3>
+          </div>
 
-        // Utwórz nowy URL dla strony docelowej
-        const targetUrl = new URL(targetPage, currentUrl.origin);
+          <!-- 4. Druga seria kafelków - identyczna jak pierwsza -->
+          <div class="option">
+            <img src="img/rozrywka/star_wars.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Star Wars</h3>3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/spider_man.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Spider Man</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/forest_gump.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Forrest Gump</h3>
+          </div>
+          <div class="option">
+            <img src="img/rozrywka/lew.webp" alt="Okładka filmu"/>
+            <h3 class="movie-title">Król Lew</h3>
+          </div>
+        </div> <!-- .carousel-track -->
+      </div> <!-- .carousel-container -->
+    </div> <!-- .type -->
 
-        // Dodaj istniejące parametry do nowego URL
-        targetUrl.searchParams.set('orderCode', currentUrl.searchParams.get('orderCode'));
-        targetUrl.searchParams.set('upgradeChoice', currentUrl.searchParams.get('upgradeChoice'));
-        targetUrl.searchParams.set('seatType', upgradeType);
+    <!-- Tutaj analogicznie można dodać kolejne "type" z karuzelami... -->
 
-        // Przekieruj na nowy URL
-        window.location.href = targetUrl.href;
-    });
-});
-</script>
-
+  </div> <!-- .offers -->
+  </main>
 
   <footer>
     <!-- Zawartość stopki -->

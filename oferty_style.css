@@ -430,175 +430,117 @@
     
   }
 
-/* Stylizacja sekcji Upgrade */
-/* Stylizacja nagłówka "Upgrade" */
-.upgrade-title {
-    font-size: 30px;
+/* ---------------------------------------
+   Ogólne style strony / sekcji
+---------------------------------------- */
+
+.main-title {
+    font-size: 2rem;
     color: #243751;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 0; /* Usuń nadmiar marginesów */
-}
+    margin: 40px 0 20px;
+  }
   
-/* Stylizacja sekcji Upgrade */
-.upgrade-section {
+  .main-description {
+    font-size: 1.2rem;
+    color: #243751;
     padding: 20px;
-    margin: 0 auto;
-}
-
-/* Układ dla zawartości sekcji Upgrade */
-.upgrade-layout {
-    display: flex;
-    align-items: center; /* Wyśrodkowanie pionowe */
-    justify-content: flex-start; /* Przesunięcie zawartości w lewo */
-    gap: 25px; /* Odstęp między lewą stroną a kafelkami */
-    min-height: 400px; /* Opcjonalnie można ustawić minimalną wysokość */
-}
-
-
-.upgrade-content {
-    flex: 2; /* Zwiększenie szerokości lewej strony */
-    text-align: left; /* Tekst wyrównany do lewej */
-    display: flex;
-    flex-direction: column;
-}
-
-.upgrade-content h1, .upgrade-content p {
-    text-align: center; /* Wyśrodkowanie tekstu */
-}
-
-.upgrade-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center; /* Wyśrodkowanie przycisku */
-    margin-left:auto;/* Odstęp między formularzem a kafelkami */
-}
-
-.upgrade-form h2 {
-    font-size: 25px; /* Zmniejszenie rozmiaru czcionki */
-    white-space: nowrap; /* Zapobiega łamaniu linii */
-    overflow: hidden; /* Ukrywa tekst, jeśli nie mieści się w kontenerze */
-    text-overflow: ellipsis; /* Dodaje wielokropek, jeśli tekst się nie mieści */
-    margin: 10px 0; /* Odstępy nad i pod */
-}
-
-
-.upgrade-form input {
-    padding: 10px;
-    font-size: 1rem;
-    width: 50%; /* Zachowanie szerokości pola */
-    text-align: center; 
-}
-
-.upgrade-form button {
-    padding: 10px;
-    font-size: 1rem;
-    color: #ffffff;
-    background-color: #c00;
-    cursor: pointer;
-    font-weight: bold;
-    align-self: center; /* Wyśrodkowanie przycisku */
-    transition: background-color 0.3s ease;
-    border: 2px solid #243751;
-}
-
-.upgrade-form button:hover {
-    background-color: #a00;
-}
-
-/* Kafelki z ikonami */
-.upgrade-options {
-    display: flex;
-    flex: 3; /* Zwiększenie proporcji kafelków względem lewej strony */
-    gap: 40px; /* Zwiększenie odstępu między kafelkami */
-    justify-content: center; /* Wyśrodkowanie kafelków w poziomie */
-    align-items: center; /* Wyśrodkowanie kafelków w pionie */
-    box-sizing: none;
-    margin-right: 20px;
-}
-
-.option {
-    flex: 1;
-    max-width: 350px; /* Ograniczenie szerokości kafelków */
-    background-color: #f5f5f5;
+  }
+  
+  .type-heading {
+    font-size: 1.5rem;
+    color: #243751;
+    margin: 20px 0 20px;
+    padding: 20px;
+  }
+  
+  /* ---------------------------------------
+     KARUZELA
+     - .carousel-container -> overflow: hidden
+     - .carousel-track -> szeroki „tor” z animacją
+     - .option -> kafelek
+  ---------------------------------------- */
+  
+  /* Kontener karuzeli (np. wewnątrz .type) */
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Tor karuzeli (animowany) */
+  .carousel-track {
+    display: inline-flex;
+    /* Możesz w razie potrzeby dodać width: 200%; 
+       jeśli chcesz wymusić 2x szerokość kontenera. 
+       Zwykle starczy, że elementy sumują się do >100%. */
+    animation: scrollCarousel 30s linear infinite;
+  }
+  
+  /* Każdy kafelek (obraz + tytuł) */
+  .option {
+    min-width: 250px;
+    max-width: 300px;
+    background-color: #ffffff;
     border: 2px solid #243751;
     padding: 20px;
     text-align: center;
-}
-
-.option img {
-    width: 300px; /* Szerokość zdjęcia */
-    height: 300px; /* Wysokość zdjęcia */
-    object-fit: cover; /* Zapewnia odpowiednie przycięcie, jeśli proporcje zdjęcia są różne */
-    margin-bottom: 10px;
-    border: 2px solid #243751;
-}
-
-.option .kinds {
-    font-size: 20px;
-    color: #333;
-    margin: 5px 0;
-    margin-bottom: 40px;
-    margin-top: 10px;
-}
-
-/* Responsywność dla urządzeń o szerokości mniejszej niż 768px */
-@media (max-width: 768px) {
-    .upgrade-layout {
-        flex-direction: column; /* Ułóż elementy w kolumnie */
-        gap: 20px;
-        align-items: center; /* Wyśrodkowanie całego układu */
-    }
-
-    .upgrade-options {
-        flex-direction: column; /* Ustawienie kafelków w kolumnie */
-        justify-content: center;
-        align-items: center; /* Wyśrodkowanie kafelków */
-        gap: 20px;
-    }
-
-    .option {
-        max-width: 100%; /* Ustawienie maksymalnej szerokości */
-        margin: 0 auto; /* Wyśrodkowanie kafelków */
-    }
-
-    .upgrade-form h2 {
-        font-size: 20px; /* Zmniejszenie rozmiaru czcionki */
-        word-wrap: break-word; /* Automatyczne zawijanie słów */
-        word-break: break-word; /* Zawijanie przy długich słowach */
-        white-space: normal; /* Umożliwienie zawijania tekstu */
-        text-align: center; /* Wyśrodkowanie tekstu */
-    }
-
-    .upgrade-form h1 {
-      font-size: 25px; /* Zmniejszenie rozmiaru czcionki */
+    margin-right: 20px;  /* odstęp między kafelkami */
+    box-sizing: border-box;
   }
-}
-
-/* Responsywność dla urządzeń o szerokości mniejszej niż 1400px */
-@media (max-width: 1400px) and (min-width: 768px) {
-    .upgrade-layout {
-        flex-direction: column; /* Ułóż elementy w kolumnie */
-        gap: 20px;
-        align-items: center; /* Wyśrodkowanie całego układu */
+  
+  /* Ostatni kafelek w serii -> chcemy uniknąć dodatkowego marginesu na końcu */
+  .option:last-child {
+    margin-right: 0;
+  }
+  
+  /* Obraz w kafelku */
+  .option img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid #243751;
+  }
+  
+  /* Tytuł w kafelku */
+  .movie-title {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Animacja przesuwająca track o -50% (szerokość 1. serii) */
+  @keyframes scrollCarousel {
+    0% {
+      transform: translateX(0); /* Start */
     }
-
-    .upgrade-options {
-        flex-direction: row; /* Kafelki w rzędzie */
-        justify-content: center;
-        align-items: center; /* Wyśrodkowanie kafelków */
-        gap: 20px;
+    
+    100% {
+      transform: translateX(-50%); /* Znowu przesunięcie o 50% */
     }
-
+  }
+  
+  
+  /* ---------------------------------------
+     Media Queries (responsywność)
+  ---------------------------------------- */
+  
+  /* Ekrany max 768px */
+  @media (max-width: 768px) {
     .option {
-        max-width: 100%;
-        margin: 0 auto;
+      min-width: 180px;
+      margin-right: 15px; /* można trochę zmniejszyć odstęp */
     }
-}
-
-
-
+  }
+  
+  /* Ekrany max 576px */
+  @media (max-width: 576px) {
+    .option {
+      min-width: 150px;
+      margin-right: 10px;
+    }
+  }
   
   /* ---------------------------------------
   MEDIA QUERIES - WYGLĄD MOBILE

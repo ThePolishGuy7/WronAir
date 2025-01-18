@@ -394,7 +394,100 @@
   .footer-logo img {
     max-width: 25%;
   }
-    
+
+/* Stylizacja sekcji Upgrade */
+.upgrade-section {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.upgrade-title {
+    font-size: 30px;
+    color: #243751;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0; /* Usuń nadmiar marginesów */
+}
+
+/* Układ dla zawartości sekcji Upgrade */
+.upgrade-layout {
+    display: flex;
+    flex-direction: column; /* Domyślnie pionowy układ */
+    align-items: center; /* Wyśrodkowanie zawartości */
+    justify-content: center;
+    gap: 25px;
+    min-height: 400px;
+}
+
+.main-description {
+    font-size: 1.2rem;
+    color: #243751;
+    padding: 5px;
+}
+
+.upgrade-options {
+    display: flex;
+    flex-wrap: wrap; /* Pozwala na zawijanie elementów w wiersze */
+    gap: 20px;
+    justify-content: center; /* Wyśrodkowanie kafelków w poziomie */
+    align-items: stretch; /* Wszystkie kafelki mają tę samą wysokość */
+}
+
+.option {
+    flex: 1;
+    max-width: 300px; /* Maksymalna szerokość kafelka */
+    min-height: 350px; /* Minimalna wysokość kafelka */
+    background-color: #ffffff;
+    border: 2px solid #243751;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Umożliwia uporządkowanie zawartości */
+    justify-content: space-between; /* Rozkłada zawartość równomiernie */
+}
+
+.option h1 {
+    border-bottom: 2px solid #243751; /* Dodaje linię pod tekstem */
+    margin-bottom: 10px; /* Odstęp między tekstem a linią */
+    padding-bottom: 20px; /* Dodaje przestrzeń przed linią */
+}
+
+.option h1:last-child {
+    border-bottom: none; /* Usuwa linię pod ostatnim <h1> */
+}
+
+/* Media queries dla responsywności */
+@media (max-width: 768px) {
+    .upgrade-options {
+        gap: 15px; /* Zmniejszenie odstępów między kafelkami */
+    }
+
+    .option {
+        max-width: 100%; /* Kafelki zajmują pełną szerokość */
+        min-height: auto; /* Dostosowanie wysokości */
+    }
+}
+
+@media (max-width: 500px) {
+    .upgrade-options {
+        flex-direction: column; /* Kafelki układają się w kolumnę */
+        gap: 10px; /* Zmniejszenie odstępów między kafelkami */
+    }
+
+    .option {
+        max-width: 100%; /* Kafelki na pełną szerokość */
+        min-height: auto; /* Brak minimalnej wysokości */
+    }
+
+    .upgrade-title {
+        font-size: 24px; /* Zmniejszenie rozmiaru tytułu */
+    }
+
+    .main-description {
+        font-size: 1rem; /* Zmniejszenie rozmiaru tekstu */
+    }
+}
+
   /* ---------------------------------------
   MEDIA QUERIES - WYGLĄD TABLET
   --------------------------------------- */
@@ -429,127 +522,7 @@
     }
     
   }
-
- /* ---------------------------------------
-  Services choice
---------------------------------------- */
-
-/* Stylizacja sekcji service */
-.service-section {
-  padding: 20px;
-  margin: 0 auto;
-}
-
-.service-title {
-  font-size: 30px;
-  color: #243751;
-  text-align: center;
-  margin-bottom: 20px;
-  margin-top: 0;
-}
-
-/* Układ dla zawartości sekcji service */
-.service-layout {
-  display: flex;
-  flex-direction: column; /* Domyślnie pionowy układ */
-  align-items: center; 
-  justify-content: center;
-  gap: 25px;
-  margin-bottom: 20px;
-}
-
-/* Kontener na kafelki */
-.service-options {
-  display: flex;
-  flex-wrap: wrap;  /* Pozwala na zawijanie elementów w wiersze */
-  gap: 20px;
-  justify-content: center; /* Wyśrodkowanie kafelków w poziomie */
-  align-items: flex-start; /* lub center, w zależności od efektu */
-}
-
-/* Każdy kafelek */
-.option {
-/* Można zostawić elastyczne parametry zamiast sztywnego width/height */
-width: 100%;
-max-width: 300px;         /* maksymalna szerokość kafelka */
-box-sizing: border-box;   /* żeby padding i obramowanie nie „nadmuchiwały” go */
-background-color: #ffffff;
-border: 2px solid #243751;
-padding: 20px;
-margin: 0;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-}
-
-/* Obrazek w kafelku */
-.option img {
-width: 100%;
-height: auto;            /* responsywna wysokość zależna od szerokości */
-object-fit: cover;       
-margin-bottom: 20px;
-border: 2px solid #243751;
-}
-
-/* Tekst w kafelku */
-.option .kinds {
-  font-size: 18px;
-  color: #333;
-  margin: 10px 0;
-}
-
-/* Przycisk w kafelku */
-.option .service-btn {
-  padding: 10px;
-  font-size: 1rem;
-  color: #ffffff;
-  background-color: #c00;
-  cursor: pointer;
-  height: 50px; 
-  width: 100%; 
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  border: 2px solid #243751;
-  margin-bottom: 10px;
-}
-
-.option .service-btn:hover {
-  background-color: #a00;
-}
-
-
-/* ---------------------------------------
- MEDIA QUERIES
---------------------------------------- */
-
-/* Na dużych ekranach powyżej ~992px może zostać tak, jak jest,
- więc tutaj brak definicji, bo to nasz „domyślny” styl. */
-
-/* Zmiany dla średnich ekranów (np. tablety, max ~992px) */
-@media (max-width: 992px) {
-.service-options {
-  gap: 20px;
-  justify-content: center;
-}
-.option {
-  /* Dwa kafelki w rzędzie – 45% z uwzględnieniem marginesów/gap */
-  width: calc(50% - 30px); 
-  max-width: none;  /* usuwamy limit 300px, by lepiej się rozciągały */
-}
-}
-
-/* Zmiany dla małych ekranów (telefony, max ~576px) */
-@media (max-width: 576px) {
-.option {
-  /* Na zupełnie małych ekranach kafelki po jednym w rzędzie */
-  width: 100%;
-  margin: 0;
-  max-width: 100%;
-}
-}
-
+  
   /* ---------------------------------------
   MEDIA QUERIES - WYGLĄD MOBILE
   --------------------------------------- */

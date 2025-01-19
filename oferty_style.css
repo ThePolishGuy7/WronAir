@@ -1,4 +1,3 @@
-/* Wyzerowanie marginesów/paddingów i box-sizing */
 * {
     margin: 0;
     padding: 0;
@@ -214,11 +213,9 @@
     transition: transform 0.3s ease;
     z-index: 15;
     display: flex;
-    /* Zmieniamy wyrównanie pionowe z center na flex-start, 
-       dzięki czemu menu zacznie się od góry */
     align-items: flex-start;
     justify-content: center;
-    padding-top: 60px; /* Dodajemy padding, aby zawartość nie przylegała do samej krawędzi */
+    padding-top: 60px; 
   }
   
   .mobile-menu ul {
@@ -432,7 +429,7 @@
   }
 
 /* ---------------------------------------
-   Ogólne style strony / sekcji
+   MAIN
 ---------------------------------------- */
 
 .main-title {
@@ -462,20 +459,17 @@
      - .option -> kafelek
   ---------------------------------------- */
   
-  /* Kontener karuzeli (np. wewnątrz .type) */
+  /* Kontener karuzeli */
   .carousel-container {
     position: relative;
     width: 100%;
     margin-bottom: 20px;
-    overflow-x: hidden; /* Dodane */
+    overflow-x: hidden;
   }
   
   /* Tor karuzeli (animowany) */
   .carousel-track {
     display: inline-flex;
-    /* Możesz w razie potrzeby dodać width: 200%; 
-       jeśli chcesz wymusić 2x szerokość kontenera. 
-       Zwykle starczy, że elementy sumują się do >100%. */
     animation: scrollCarousel 30s linear infinite;
   }
   
@@ -487,11 +481,14 @@
     border: 2px solid #243751;
     padding: 20px;
     text-align: center;
-    margin-right: 20px;  /* odstęp między kafelkami */
+    margin-right: 20px;  
     box-sizing: border-box;
   }
+
+  .option p{
+    color:#243751;
+  }
   
-  /* Ostatni kafelek w serii -> chcemy uniknąć dodatkowego marginesu na końcu */
   .option:last-child {
     margin-right: 0;
   }
@@ -533,7 +530,7 @@
   @media (max-width: 768px) {
     .option {
       min-width: 180px;
-      margin-right: 15px; /* można trochę zmniejszyć odstęp */
+      margin-right: 15px; 
     }
   }
   

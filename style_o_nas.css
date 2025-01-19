@@ -1,4 +1,3 @@
-/* Wyzerowanie marginesów/paddingów i box-sizing */
 * {
     margin: 0;
     padding: 0;
@@ -214,11 +213,9 @@
     transition: transform 0.3s ease;
     z-index: 15;
     display: flex;
-    /* Zmieniamy wyrównanie pionowe z center na flex-start, 
-       dzięki czemu menu zacznie się od góry */
     align-items: flex-start;
     justify-content: center;
-    padding-top: 150px; /* Dodajemy padding, aby zawartość nie przylegała do samej krawędzi */
+    padding-top: 150px; /* odległość od góry menu do pierwszego linku */
   }
   
   .mobile-menu ul {
@@ -256,7 +253,6 @@
   /* --------------------------------------------------
   O NAS
   -------------------------------------------------- */
-  /* General styling for main content */
     main.content {
     padding: 20px;
     background-color: #ffffff;
@@ -264,8 +260,8 @@
     line-height: 1.6;
     }
   
-  /* Section headers */
     main.content h1, main.content h2 {
+    color:#243751;
     margin-bottom: 20px;
     }
     
@@ -281,14 +277,13 @@
     font-size: 35px;
     }
   
-  /* Paragraphs */
     main.content p {
+    color:#243751;
     text-align: justify;
     margin-bottom: 20px;
     font-size: 28px;
     }
   
-  /* Image rows */
     main.content .image-row {
     display: flex;
     justify-content: space-between;
@@ -300,7 +295,6 @@
     border: 2px solid #243751;
     }
   
-  /* CTA (call-to-action) button */
     main.content .cta {
     text-align: center;
     margin-top: 30px;
@@ -494,7 +488,7 @@
 
   .lang-btn {
     font-size: 40px;
-    padding: 10px 20px; /* przykładowe powiększenie paddingu */
+    padding: 10px 20px; 
   }
 }
 

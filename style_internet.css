@@ -1,4 +1,3 @@
-/* Wyzerowanie marginesów/paddingów i box-sizing */
 * {
     margin: 0;
     padding: 0;
@@ -213,11 +212,9 @@
     transition: transform 0.3s ease;
     z-index: 15;
     display: flex;
-    /* Zmieniamy wyrównanie pionowe z center na flex-start, 
-       dzięki czemu menu zacznie się od góry */
     align-items: flex-start;
     justify-content: center;
-    padding-top: 60px; /* Dodajemy padding, aby zawartość nie przylegała do samej krawędzi */
+    padding-top: 60px; 
   }
   
   .mobile-menu ul {
@@ -394,8 +391,9 @@
   .footer-logo img {
     max-width: 25%;
   }
-
-/* Stylizacja sekcji Upgrade */
+/* ---------------------------------------
+  SEKCJA internet
+--------------------------------------- */
 .upgrade-section {
     padding: 20px;
     margin: 0 auto;
@@ -406,10 +404,9 @@
     color: #243751;
     text-align: center;
     margin-bottom: 20px;
-    margin-top: 0; /* Usuń nadmiar marginesów */
+    margin-top: 0; 
 }
 
-/* Układ dla zawartości sekcji Upgrade */
 .upgrade-layout {
     display: flex;
     flex-direction: column; /* Domyślnie pionowy układ */
@@ -427,10 +424,10 @@
 
 .upgrade-options {
     display: flex;
-    flex-wrap: wrap; /* Pozwala na zawijanie elementów w wiersze */
+    flex-wrap: wrap; 
     gap: 20px;
-    justify-content: center; /* Wyśrodkowanie kafelków w poziomie */
-    align-items: stretch; /* Wszystkie kafelki mają tę samą wysokość */
+    justify-content: center; 
+    align-items: stretch; 
 }
 
 .option {

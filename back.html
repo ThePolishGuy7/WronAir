@@ -102,13 +102,13 @@
 
   <!-- Element Departure -->
   <main class="content">
-    <h1>Wybierz godzinę wylotu w dniu: <span id="departure_date-display"></span></h1>
-    <h2><span class="spaces"></span><span id="from-display3"></span> ------------ <span><img src="img/samolot.png" alt="Plane Icon" class="icon"></span> ------------ <span id = "to-display3"></span></h2>
+    <h1>Wybierz godzinę powrotu w dniu: <span id="arrival_date-display"></span></h1>
+    <h2><span class="spaces"></span><span id="to-display3"></span> ------------ <span><img src="img/samolot.png" alt="Plane Icon" class="icon"></span> ------------ <span id = "from-display3"></span></h2>
     <section class="departure-container">
         <div class="flight-options">
             <!-- Flight Option 1 -->
             <div class="flight-info">
-                <h2><strong><span id="from-display"></span><span class="space"></span><span id ="to-display"></strong></h2>
+                <h2><strong><span id="to-display"></span><span class="space"></span><span id ="from-display"></strong></h2>
                 <p class="hour">9h 35min</p>
                 <h2>
                   <span class="departure-time" data-time="12:35">12:35</span>
@@ -152,7 +152,7 @@
         <div class="flight-options">
           <!-- Flight Option 2 -->
           <div class="flight-info">
-            <h2><strong><span id="from-display1"></span><span class="space"></span><span id ="to-display1"></strong></h2>
+            <h2><strong><span id="to-display1"></span><span class="space"></span><span id ="from-display1"></strong></h2>
               <p class="hour">9h 35min</p>
               <h2>
                 <span class="departure-time" data-time="12:35">12:35</span>
@@ -196,7 +196,7 @@
       <div class="flight-options">
         <!-- Flight Option 3 -->
         <div class="flight-info">
-          <h2><strong><span id="from-display2"></span><span class="space"></span><span id ="to-display2"></strong></h2>
+          <h2><strong><span id="to-display2"></span><span class="space"></span><span id ="from-display2"></strong></h2>
             <p class="hour">9h 35min</p>
             <h2>
               <span class="departure-time" data-time="12:35">12:35</span>
@@ -239,7 +239,7 @@
     </div>
     <div class="price-container">
       <h2>Cena całkowita: <span class="price-value">0.00 PLN</span></h2>
-      <a id="nextPageLink" class="return-button" href="#">Wybierz lot powrotny</a>
+      <a id="nextPageLink" class="return-button" href="#">Wprowadź dane pasażerów</a>
     </div>
     </section>
   </main>
@@ -336,6 +336,12 @@
   const passengers = params.get("passengers") || "1";
   const departureDate = params.get("departure_date") || "Brak daty";
   const returnDate = params.get("return_date") || "Brak daty";
+  const duration = params.get("duration") || "Brak czasu";
+  const departure_time = params.get("departure_time") || "Brak czasu";
+  const arrival_time = params.get("arrival_time") || "Brak czasu";
+  const flight_code = params.get("flight_code") || "Brak kodu";
+  const price = params.get("price") || "0.00";
+  const ticket_type = params.get("ticket_type") || "Nieznany";
 
   // Wyświetlanie parametrów w elementach strony
   document.getElementById("from-display").textContent = from;
@@ -346,14 +352,15 @@
   document.getElementById("to-display2").textContent = to;
   document.getElementById("from-display3").textContent = from.slice(0, -6);
   document.getElementById("to-display3").textContent = to.slice(0, -6);
-  document.getElementById("departure_date-display").textContent = departureDate;
+  document.getElementById("arrival_date-display").textContent = returnDate;
 
   const nextPageLink = document.getElementById("nextPageLink");
-  const priceValueElement = document.querySelector(".price-value"); // Definiowanie elementu
-
+  const priceValueElement = document.querySelector(".price-value");
   let selectedOption = null; // Przechowuje wybraną opcję
 
-  // Dezaktywuj przycisk „Wybierz lot powrotny” na początku
+  priceValueElement.textContent = `${price} PLN`;
+
+  // Dezaktywuj przycisk „Wprowadź dane pasażerów” na początku
   nextPageLink.classList.add("disabled");
   nextPageLink.style.pointerEvents = "none";
   nextPageLink.style.opacity = "0.5";
@@ -375,50 +382,60 @@
         selectedOption = priceBox;
         priceBox.classList.add("selected");
 
-        // Aktywuj przycisk „Wybierz lot powrotny”
+        // Aktywuj przycisk „Wprowadź dane pasażerów”
         nextPageLink.classList.remove("disabled");
         nextPageLink.style.pointerEvents = "auto";
         nextPageLink.style.opacity = "1";
 
         // Pobierz dane z wybranej opcji
-        const duration = option.querySelector(".hour")?.textContent.trim() || "";
-        const departureTime = option.querySelector(".departure-time")?.getAttribute("data-time") || "";
-        const arrivalTime = option.querySelector(".arrival-time")?.getAttribute("data-time") || "";
-        const flightCode = option.querySelector(".additional-info p")?.textContent.trim() || "";
-        const priceText = priceBox.querySelector(".price").textContent.trim();
-        const ticketType = priceBox.querySelector("h1").textContent.trim();
+        const duration_return = option.querySelector(".hour")?.textContent.trim() || "";
+        const departureTime_return = option.querySelector(".departure-time")?.getAttribute("data-time") || "";
+        const arrivalTime_return = option.querySelector(".arrival-time")?.getAttribute("data-time") || "";
+        const flightCode_return = option.querySelector(".additional-info p")?.textContent.trim() || "";
+        const priceText_return = priceBox.querySelector(".price").textContent.trim();
+        const ticketType_return = priceBox.querySelector("h1").textContent.trim();
 
         // Zamiana na float i int
-        const numericPrice = parseFloat(priceText.replace(/[^\d,.-]/g, "").replace(",", "."));
+        const actualPrice = parseFloat(price);
+        const numericPrice = parseFloat(priceText_return.replace(/[^\d,.-]/g, "").replace(",", "."));
         const passengersInt = parseInt(passengers) || 1;
-
-        const totalPrice = (numericPrice * passengersInt).toFixed(2);
+        const totalPrice = (actualPrice + (numericPrice * passengersInt)).toFixed(2);
 
         // Wyświetl cenę w elemencie .price-value
         priceValueElement.textContent = `${totalPrice} PLN`;
 
-        // Ustaw URL dla przycisku „Wybierz lot powrotny”
-        nextPageLink.href = `back.html?trip_type=${tripType}&from=${encodeURIComponent(
+        // Ustaw URL dla przycisku „Wprowadź dane pasażerów”
+        nextPageLink.href = `dane.html?trip_type=${tripType}&from=${encodeURIComponent(
           from
         )}&to=${encodeURIComponent(to)}&passengers=${passengers}&departure_date=${departureDate}&return_date=${returnDate}&duration=${encodeURIComponent(
           duration
         )}&departure_time=${encodeURIComponent(
-          departureTime
-        )}&arrival_time=${encodeURIComponent(arrivalTime)}&flight_code=${encodeURIComponent(
-          flightCode
-        )}&price=${encodeURIComponent(totalPrice)}&ticket_type=${encodeURIComponent(ticketType)}`;
+          departure_time
+        )}&arrival_time=${encodeURIComponent(arrival_time)}&flight_code=${encodeURIComponent(
+          flight_code
+        )}&price=${encodeURIComponent(totalPrice)}&ticket_type=${encodeURIComponent(
+          ticket_type
+        )}&duration_return=${encodeURIComponent(duration_return)}&departure_time_return=${encodeURIComponent(
+          departureTime_return
+        )}&arrival_time_return=${encodeURIComponent(
+          arrivalTime_return
+        )}&flight_code_return=${encodeURIComponent(
+          flightCode_return
+        )}&ticket_type_return=${encodeURIComponent(ticketType_return)}`;
+        console.log("Generated URL:", nextPageLink.href); // Debugowanie
       });
     });
   });
 
-  // Zapobiegaj przypadkowym kliknięciom w „Wybierz lot powrotny” bez wyboru opcji
+  // Zapobiegaj przypadkowym kliknięciom w „Wprowadź dane pasażerów” bez wyboru opcji
   nextPageLink.addEventListener("click", function (event) {
     if (nextPageLink.classList.contains("disabled")) {
       event.preventDefault();
+    } else {
+      console.log("Redirecting to:", nextPageLink.href); // Debugowanie
     }
   });
 });
-
 </script>
 <script>
 // Pobierz wszystkie przyciski z klasy "price-box"

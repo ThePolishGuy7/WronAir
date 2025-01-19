@@ -508,6 +508,7 @@
   
   /* Tytuł w kafelku */
   .movie-title {
+    color:#243751;
     font-weight: bold;
     margin-top: 10px;
   }

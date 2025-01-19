@@ -447,6 +447,7 @@
 }
 
 .option h1 {
+  color:#243751;
     border-bottom: 2px solid #243751; /* Dodaje linię pod tekstem */
     margin-bottom: 10px; /* Odstęp między tekstem a linią */
     padding-bottom: 20px; /* Dodaje przestrzeń przed linią */

@@ -353,6 +353,15 @@
 
   let selectedOption = null; // Przechowuje wybraną opcję
 
+  if (nextPageLink) {
+    let nextPageURL;
+    if (tripType === 'round-trip') {
+      nextPageLink.textContent = 'Wybierz lot powrotny';
+    } else if (tripType === 'one-way') {
+      nextPageLink.textContent = 'Wprowadź dane pasażerów';
+    }
+  }
+
   // Dezaktywuj przycisk „Wybierz lot powrotny” na początku
   nextPageLink.classList.add("disabled");
   nextPageLink.style.pointerEvents = "none";
@@ -397,16 +406,35 @@
         // Wyświetl cenę w elemencie .price-value
         priceValueElement.textContent = `${totalPrice} PLN`;
 
-        // Ustaw URL dla przycisku „Wybierz lot powrotny”
-        nextPageLink.href = `back.html?trip_type=${tripType}&from=${encodeURIComponent(
-          from
-        )}&to=${encodeURIComponent(to)}&passengers=${passengers}&departure_date=${departureDate}&return_date=${returnDate}&duration=${encodeURIComponent(
-          duration
-        )}&departure_time=${encodeURIComponent(
-          departureTime
-        )}&arrival_time=${encodeURIComponent(arrivalTime)}&flight_code=${encodeURIComponent(
-          flightCode
-        )}&price=${encodeURIComponent(totalPrice)}&ticket_type=${encodeURIComponent(ticketType)}`;
+        if (nextPageLink) {
+            let nextPageURL;
+            if (tripType === 'round-trip') {
+              nextPageURL = `back.html?trip_type=${tripType}&from=${encodeURIComponent(
+                from
+              )}&to=${encodeURIComponent(to)}&passengers=${passengers}&departure_date=${departureDate}&return_date=${returnDate}&duration=${encodeURIComponent(
+                duration
+              )}&departure_time=${encodeURIComponent(
+                departureTime
+              )}&arrival_time=${encodeURIComponent(arrivalTime)}&flight_code=${encodeURIComponent(
+                flightCode
+              )}&price=${encodeURIComponent(totalPrice)}&ticket_type=${encodeURIComponent(ticketType)}`;
+              nextPageLink.textContent = 'Wybierz lot powrotny';
+            } else if (tripType === 'one-way') {
+              nextPageURL = `dane.html?trip_type=${tripType}&from=${encodeURIComponent(
+                from
+              )}&to=${encodeURIComponent(to)}&passengers=${passengers}&departure_date=${departureDate}&return_date=${returnDate}&duration=${encodeURIComponent(
+                duration
+              )}&departure_time=${encodeURIComponent(
+                departureTime
+              )}&arrival_time=${encodeURIComponent(arrivalTime)}&flight_code=${encodeURIComponent(
+                flightCode
+              )}&price=${encodeURIComponent(totalPrice)}&ticket_type=${encodeURIComponent(ticketType)}`;
+              nextPageLink.textContent = 'Wprowadź dane pasażerów';
+            }
+
+            nextPageLink.href = nextPageURL; // Ustawienie linku
+            console.log('Przekierowanie do:', nextPageURL); // Debugowanie
+          }
       });
     });
   });
@@ -418,7 +446,6 @@
     }
   });
 });
-
 </script>
 <script>
 // Pobierz wszystkie przyciski z klasy "price-box"
